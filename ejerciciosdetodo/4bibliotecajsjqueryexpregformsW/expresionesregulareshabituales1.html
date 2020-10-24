@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/ -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0">
+<div class="fit-vids-style" id="fit-vids-style" style="display: none;">­<style> .fluid-width-video-wrapper { width: 100%; position: relative; padding: 0; } .fluid-width-video-wrapper iframe, .fluid-width-video-wrapper object, .fluid-width-video-wrapper embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; } </style></div><script async="" src="./expresionesregulareshabituales1_files/analytics.js.descarga"></script><script async="" src="./expresionesregulareshabituales1_files/analytics.js.descarga"></script><script type="text/javascript">
+    window.smartlook||(function(d) {
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='//rec.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', '0c07aa23c76625661d526dcecf09812ce493b648');
+</script><script async="" type="text/javascript" charset="utf-8" src="./expresionesregulareshabituales1_files/recorder.js.descarga"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75703559-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<meta name="robots" content="index, follow">
+<meta name="author" content="José López Quijado">
+<meta name="owner" content="José López Quijado">
+<meta name="description" content="Recursos, trucos y tutoriales para desarrolladores web. Libros y manuales de informática.">
+<meta name="keywords" content="Desarrollo web, recursos para programadores, php, javascript, jquery, jqueryui, jquery mobile, html 5, responsive web design, manual español pdf, manual, español, pdf, libros para descargar, arduino, fechas en php, programación orientada a objetos">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://eldesvandejose.com/xmlrpc.php">
+<link rel="shortcut icon" href="http://eldesvandejose.com/wp-content/uploads/2016/10/eldesvandejose.ico"><link rel="apple-touch-icon" href="http://eldesvandejose.com/wp-content/uploads/2016/10/eldesvandejose.ico"><title>Expresiones regulares – Recursos para programadores</title>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Recursos para programadores » Feed" href="https://eldesvandejose.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Recursos para programadores » RSS de los comentarios" href="https://eldesvandejose.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Recursos para programadores » Expresiones regulares RSS de los comentarios" href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/feed/">
+<!-- This site uses the Google Analytics by MonsterInsights plugin v7.10.0 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+	var mi_version         = '7.10.0';
+	var mi_track_user      = true;
+	var mi_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-75703559-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+	
+	if ( mi_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+		__gaTracker('create', 'UA-75703559-1', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('send','pageview');
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Función desactivada __gaTracker(' + arguments[0] + " ....) porque no estás siendo rastreado. " + mi_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+					})();
+		}
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/eldesvandejose.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.6"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./expresionesregulareshabituales1_files/wp-emoji-release.min.js.descarga" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel="stylesheet" id="simple_tooltips_style-css" href="./expresionesregulareshabituales1_files/zebra_tooltips.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-css" href="./expresionesregulareshabituales1_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="./expresionesregulareshabituales1_files/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookie-law-info-css" href="./expresionesregulareshabituales1_files/cookie-law-info-public.css" type="text/css" media="all">
+<link rel="stylesheet" id="cookie-law-info-gdpr-css" href="./expresionesregulareshabituales1_files/cookie-law-info-gdpr.css" type="text/css" media="all">
+<link rel="stylesheet" id="toc-screen-css" href="./expresionesregulareshabituales1_files/screen.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="googlefonts-css" href="./expresionesregulareshabituales1_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="um_fonticons_ii-css" href="./expresionesregulareshabituales1_files/um-fonticons-ii.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_fonticons_fa-css" href="./expresionesregulareshabituales1_files/um-fonticons-fa.css" type="text/css" media="all">
+<link rel="stylesheet" id="select2-css" href="./expresionesregulareshabituales1_files/select2.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_crop-css" href="./expresionesregulareshabituales1_files/um-crop.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_modal-css" href="./expresionesregulareshabituales1_files/um-modal.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_styles-css" href="./expresionesregulareshabituales1_files/um-styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_members-css" href="./expresionesregulareshabituales1_files/um-members.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_profile-css" href="./expresionesregulareshabituales1_files/um-profile.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_account-css" href="./expresionesregulareshabituales1_files/um-account.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_misc-css" href="./expresionesregulareshabituales1_files/um-misc.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_fileupload-css" href="./expresionesregulareshabituales1_files/um-fileupload.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_datetime-css" href="./expresionesregulareshabituales1_files/default.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_datetime_date-css" href="./expresionesregulareshabituales1_files/default.date.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_datetime_time-css" href="./expresionesregulareshabituales1_files/default.time.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_raty-css" href="./expresionesregulareshabituales1_files/um-raty.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_scrollbar-css" href="./expresionesregulareshabituales1_files/simplebar.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_tipsy-css" href="./expresionesregulareshabituales1_files/um-tipsy.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_responsive-css" href="./expresionesregulareshabituales1_files/um-responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_default_css-css" href="./expresionesregulareshabituales1_files/um-old-default.css" type="text/css" media="all">
+<link rel="stylesheet" id="um_old_css-css" href="./expresionesregulareshabituales1_files/um_old_settings.css" type="text/css" media="all">
+<link rel="stylesheet" id="tempera-fonts-css" href="./expresionesregulareshabituales1_files/fontfaces.css" type="text/css" media="all">
+<link rel="stylesheet" id="tempera-style-css" href="./expresionesregulareshabituales1_files/style.css" type="text/css" media="all">
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/jquery.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/jquery-migrate.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/include.js.descarga"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var quicktagsL10n = {"closeAllOpenTags":"Cerrar todas las etiquetas abiertas","closeTags":"cerrar etiquetas","enterURL":"Introduce la URL","enterImageURL":"Introduce la URL de la imagen","enterImageDescription":"Introduce una descripci\u00f3n de la imagen","textdirection":"Direcci\u00f3n del texto","toggleTextdirection":"Cambiar la direcci\u00f3n del editor de texto","dfw":"Modo de escritura sin distracci\u00f3n","strong":"Negrita","strongClose":"Cerrar etiqueta de negritas","em":"Cursiva","emClose":"Cerrar etiqueta de it\u00e1lica","link":"Insertar enlace","blockquote":"Cita","blockquoteClose":"Cerrar etiqueta de cita","del":"Texto eliminado (tachado)","delClose":"Cerrar etiqueta de texto borrado","ins":"Texto insertado","insClose":"Cerrar etiqueta de insertar texto","image":"Insertar imagen","ul":"Lista con vi\u00f1etas","ulClose":"Cerrar etiqueta de lista no ordenada","ol":"Lista numerada","olClose":"Cerrar etiqueta de lista numerada","li":"Elemento de la lista","liClose":"Cerrar etiqueta de elemento de la lista","code":"C\u00f3digo","codeClose":"Cerrar etiqueta de c\u00f3digo","more":"Insertar la etiqueta \u00abLeer m\u00e1s\u00bb"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/quicktags.min.js.descarga"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/eldesvandejose.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+var CrayonTagEditorSettings = {"home_url":"https:\/\/eldesvandejose.com","css":"crayon-te","css_selected":"crayon-selected","code_css":"#crayon-code","url_css":"#crayon-url","url_info_css":"#crayon-te-url-info","lang_css":"#crayon-lang","title_css":"#crayon-title","mark_css":"#crayon-mark","range_css":"#crayon-range","inline_css":"crayon-inline","inline_hide_css":"crayon-hide-inline","inline_hide_only_css":"crayon-hide-inline-only","hl_css":"#crayon-highlight","switch_html":"#content-html","switch_tmce":"#content-tmce","tinymce_button_generic":".mce-btn","tinymce_button":"a.mce_crayon_tinymce,.mce-i-crayon_tinymce","tinymce_button_unique":"mce_crayon_tinymce","tinymce_highlight":"mce-active","submit_css":"#crayon-te-ok","cancel_css":"#crayon-te-cancel","content_css":"#crayon-te-content","dialog_title_css":"#crayon-te-title","submit_wrapper_css":"#crayon-te-submit-wrapper","data_value":"data-value","attr_sep":":","css_sep":"_","fallback_lang":"default","add_text":"Agregar c\u00f3digo","edit_text":"Editar c\u00f3digo","quicktag_text":"crayon","submit_add":"Add","submit_edit":"Save","bar":"#crayon-te-bar","bar_content":"#crayon-te-bar-content","extensions":{"scpt":"applescript","applescript":"applescript","swf":"as","fla":"as","cs":"c#","h":"c++","hh":"c++","hpp":"c++","hxx":"c++","h++":"c++","cc":"c++","cpp":"c++","cxx":"c++","c++":"c++","pas":"delphi","java":"java","class":"java","jar":"java","mel":"mel","ma":"mel","mv":"miva","mvc":"miva","mvt":"miva","m":"objc","mm":"objc","psc":"papyrus","pl":"perl","py":"python","pyw":"python","pyc":"python","pyo":"python","pyd":"python","rb":"ruby","rbx":"ruby","rhtml":"ruby","vbs":"vb"}};
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/eldesvandejose.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/crayon.te.min.js.descarga"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[]","home_url":"https:\/\/eldesvandejose.com","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/frontend.min.js.descarga"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":[],"cookielist":[]};
+var log_object = {"ajax_url":"https:\/\/eldesvandejose.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/cookie-law-info-public.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-gdpr.min.js.descarga"></script>
+<link rel="https://api.w.org/" href="https://eldesvandejose.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://eldesvandejose.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://eldesvandejose.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Expresiones regulares en JavaScript" href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-en-javascript/">
+<link rel="next" title="Esclavizar un disco duro" href="https://eldesvandejose.com/2017/08/22/esclavizar-un-disco-duro/">
+<meta name="generator" content="WordPress 5.2.6">
+<link rel="shortlink" href="https://eldesvandejose.com/?p=3072">
+<link rel="alternate" type="application/json+oembed" href="https://eldesvandejose.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Feldesvandejose.com%2F2017%2F08%2F18%2Fexpresiones-regulares-general%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://eldesvandejose.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Feldesvandejose.com%2F2017%2F08%2F18%2Fexpresiones-regulares-general%2F&amp;format=xml">
+<style type="text/css">div#toc_container {width: 25%;}</style><style type="text/css" media="screen">
+	body{ font-family:"Roboto", arial, sans-serif;}
+</style>
+<!-- fonts delivered by Wordpress Google Fonts, a plugin by Adrian3.com -->		<style type="text/css">
+			.request_name {
+				display: none !important;
+			}
+		</style>
+	<link rel="author" href="http://eldesvandejose.com/">
+
+<!-- Dropdown Menu Widget Styles by shailan (https://metinsaylan.com) v1.9.7 on wp5.2.6 -->
+<link rel="stylesheet" href="./expresionesregulareshabituales1_files/shailan-dropdown.min.css" type="text/css">
+<link rel="stylesheet" href="./expresionesregulareshabituales1_files/web20.css" type="text/css">
+<style type="text/css" media="all">
+	ul.dropdown { white-space: nowrap; }
+ul.dropdown li.parent>a{
+	padding-right:25px;
+}
+ul.dropdown li.parent>a:after{
+	content:""; position:absolute; top: 45%; right:6px;width:0;height:0;
+	border-top:4px solid rgba(0,0,0,0.5);border-right:4px solid transparent;border-left:4px solid transparent }
+ul.dropdown li.parent:hover>a:after{
+	content:"";position:absolute; top: 45%; right:6px; width:0; height:0;
+	border-top:4px solid rgba(0,0,0,0.5);border-right:4px solid transparent;border-left:4px solid transparent }
+ul.dropdown li li.parent>a:after{
+	content:"";position:absolute;top: 40%; right:5px;width:0;height:0;
+	border-left:4px solid rgba(0,0,0,0.5);border-top:4px solid transparent;border-bottom:4px solid transparent }
+ul.dropdown li li.parent:hover>a:after{
+	content:"";position:absolute;top: 40%; right:5px;width:0;height:0;
+	border-left:4px solid rgba(0,0,0,0.5);border-top:4px solid transparent;border-bottom:4px solid transparent }
+
+
+</style>
+<!-- /Dropdown Menu Widget Styles -->
+
+ 		<script type="text/javascript">
+			var cli_flush_cache=2;
+		</script>
+		
+<style type="text/css"></style>
+
+<style type="text/css">
+.synved-social-resolution-single {
+display: inline-block;
+}
+.synved-social-resolution-normal {
+display: inline-block;
+}
+.synved-social-resolution-hidef {
+display: none;
+}
+
+@media only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 2dppx),
+only screen and (min-resolution: 192dpi) {
+	.synved-social-resolution-normal {
+	display: none;
+	}
+	.synved-social-resolution-hidef {
+	display: inline-block;
+	}
+}
+</style>
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #000000; }
+</style>
+	<style type="text/css"> #header, #main, #topbar-inner { max-width: 1150px; } #container.one-column { } #container.two-columns-right #secondary { width:250px; float:right; } #container.two-columns-right #content { width:810px; float:left; } /*fallback*/ #container.two-columns-right #content { width:calc(100% - 280px); float:left; } #container.two-columns-left #primary { width:250px; float:left; } #container.two-columns-left #content { width:810px; float:right; } /*fallback*/ #container.two-columns-left #content { width:-moz-calc(100% - 280px); float:right; width:-webkit-calc(100% - 280px); width:calc(100% - 280px); } #container.three-columns-right .sidey { width:125px; float:left; } #container.three-columns-right #primary { margin-left:30px; margin-right:30px; } #container.three-columns-right #content { width:780px; float:left; } /*fallback*/ #container.three-columns-right #content { width:-moz-calc(100% - 310px); float:left; width:-webkit-calc(100% - 310px); width:calc(100% - 310px);} #container.three-columns-left .sidey { width:125px; float:left; } #container.three-columns-left #secondary {margin-left:30px; margin-right:30px; } #container.three-columns-left #content { width:780px; float:right;} /*fallback*/ #container.three-columns-left #content { width:-moz-calc(100% - 310px); float:right; width:-webkit-calc(100% - 310px); width:calc(100% - 310px); } #container.three-columns-sided .sidey { width:125px; float:left; } #container.three-columns-sided #secondary { float:right; } #container.three-columns-sided #content { width:780px; float:right; /*fallback*/ width:-moz-calc(100% - 310px); float:right; width:-webkit-calc(100% - 310px); float:right; width:calc(100% - 310px); float:right; margin: 0 155px 0 -1090px; } body { font-family: Ubuntu; } #content h1.entry-title a, #content h2.entry-title a, #content h1.entry-title , #content h2.entry-title { font-family: Yanone Kaffeesatz Regular; } .widget-title, .widget-title a { line-height: normal; font-family: Open Sans Light; } .entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6, #comments #reply-title, .nivo-caption h2, #front-text1 h1, #front-text2 h1, .column-header-image { font-family: inherit; } #site-title span a { font-family: Yanone Kaffeesatz Regular; } #access ul li a, #access ul li a span { font-family: Droid Sans; } body { color: #444444; background-color: #171717 } a { color: #1693A5; } a:hover,.entry-meta span a:hover, .comments-link a:hover { color: #D6341D; } #header { background-color: ; } #site-title span a { color:#1693A5; } #site-description { color:#999999; } .socials a { background-color: #1693A5; } .socials-hover { background-color: #D6341D; } /* Main menu top level */ #access a, #nav-toggle span { color: #333333; } #access, #nav-toggle {background-color: #EAEAEA; } #access > .menu > ul > li > a > span { border-color: #cccccc; -moz-box-shadow: 1px 0 0 #ffffff; -webkit-box-shadow: 1px 0 0 #ffffff; box-shadow: 1px 0 0 #ffffff; } #access a:hover {background-color: #f7f7f7; } #access ul li.current_page_item > a, #access ul li.current-menu-item > a, #access ul li.current_page_ancestor > a, #access ul li.current-menu-ancestor > a { background-color: #f7f7f7; } /* Main menu Submenus */ #access > .menu > ul > li > ul:before {border-bottom-color:#2D2D2D;} #access ul ul ul:before { border-right-color:#2D2D2D;} #access ul ul li { background-color:#2D2D2D; border-top-color:#3b3b3b; border-bottom-color:#222222} #access ul ul li a{color:#BBBBBB} #access ul ul li a:hover{background:#3b3b3b} #access ul ul li.current_page_item > a, #access ul ul li.current-menu-item > a, #access ul ul li.current_page_ancestor > a, #access ul ul li.current-menu-ancestor > a { background-color:#3b3b3b; } #topbar { background-color: #000000;border-bottom-color:#282828; box-shadow:3px 0 3px #000000; } .topmenu ul li a, .topmenu .searchsubmit { color: #CCCCCC; } .topmenu ul li a:hover, .topmenu .searchform input[type="search"] { color: #EEEEEE; border-bottom-color: #1693A5; } #main { background-color: #FFFFFF; } #author-info, #entry-author-info, .page-title { border-color: #1693A5; background: #F7F7F7; } #entry-author-info #author-avatar, #author-info #author-avatar { border-color: #EEEEEE; } .sidey .widget-container { color: #333333; background-color: ; } .sidey .widget-title { color: #666666; background-color: #F7F7F7;border-color:#cfcfcf;} .sidey .widget-container a {color:;} .sidey .widget-container a:hover {color:;} .entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 { color: #444444; } .sticky .entry-header {border-color:#1693A5 } .entry-title, .entry-title a { color: #444444; } .entry-title a:hover { color: #000000; } #content h3.entry-format { color: #333333; background-color: #EAEAEA; } #footer { color: #AAAAAA; background-color: ; } #footer2 { color: #AAAAAA; background-color: #F7F7F7; } #footer a { color: ; } #footer a:hover { color: ; } #footer2 a, .footermenu ul li:after { color: ; } #footer2 a:hover { color: ; } #footer .widget-container { color: #333333; background-color: ; } #footer .widget-title { color: #666666; background-color: #F7F7F7;border-color:#cfcfcf } a.continue-reading-link, #cryout_ajax_more_trigger { color:#333333 !important; background:#EAEAEA; border-bottom-color:#1693A5; } a.continue-reading-link:after { background-color:#D6341D; } a.continue-reading-link i.icon-right-dir {color:#1693A5} a.continue-reading-link:hover i.icon-right-dir {color:#D6341D} .page-link a, .page-link > span > em {border-color:#CCCCCC} .columnmore a {background:#D6341D;color:#F7F7F7} .columnmore a:hover {background:#1693A5;} .button, #respond .form-submit input#submit, input[type=submit], input[type=reset] { background-color: #FFFFFF; border-color: #CCCCCC; box-shadow: 0 -10px 10px 0 #F7F7F7 inset; } .button:hover, #respond .form-submit input#submit:hover { background-color: #F7F7F7; } .entry-content tr th, .entry-content thead th { color: #444444; } .entry-content fieldset, #content tr td,#content tr th, #content thead th { border-color: #CCCCCC; } #content tr.even td { background-color: #F7F7F7 !important; } hr { background-color: #CCCCCC; } input[type="text"], input[type="password"], input[type="email"], textarea, select, input[type="color"],input[type="date"],input[type="datetime"],input[type="datetime-local"],input[type="month"],input[type="number"],input[type="range"], input[type="search"],input[type="tel"],input[type="time"],input[type="url"],input[type="week"] { background-color: #F7F7F7; border-color: #CCCCCC #EEEEEE #EEEEEE #CCCCCC; color: #444444; } input[type="submit"], input[type="reset"] { color: #444444; background-color: #FFFFFF; border-color: #CCCCCC; box-shadow: 0 -10px 10px 0 #F7F7F7 inset; } input[type="text"]:hover, input[type="password"]:hover, input[type="email"]:hover, textarea:hover, input[type="color"]:hover, input[type="date"]:hover, input[type="datetime"]:hover, input[type="datetime-local"]:hover, input[type="month"]:hover, input[type="number"]:hover, input[type="range"]:hover, input[type="search"]:hover, input[type="tel"]:hover, input[type="time"]:hover, input[type="url"]:hover, input[type="week"]:hover { background-color: rgba(247,247,247,0.4); } .entry-content code { border-color: #CCCCCC; border-bottom-color:#1693A5;} .entry-content pre { border-color: #CCCCCC; background-color:#F7F7F7;} .entry-content blockquote { border-color: #EEEEEE; } abbr, acronym { border-color: #444444; } .comment-meta a { color: #444444; } #respond .form-allowed-tags { color: #999999; } .comments .reply a{ background-color: #F7F7F7; border-color: #EEEEEE; } .comments .reply a:hover { background-color: #EAEAEA;color: #1693A5; } .entry-meta .icon-metas:before {color:#CCCCCC;} .entry-meta span a, .comments-link a {color:#666666;} .entry-meta span a:hover, .comments-link a:hover {color:;} .nav-next a:hover {} .nav-previous a:hover { } .pagination { border-color:#ededed;} .pagination span, .pagination a { background:#F7F7F7; border-left-color:#dddddd; border-right-color:#ffffff; } .pagination a:hover { background: #ffffff; } #searchform input[type="text"] {color:#999999;} .caption-accented .wp-caption { background-color:rgba(22,147,165,0.8); color:#FFFFFF} .tempera-image-one .entry-content img[class*='align'],.tempera-image-one .entry-summary img[class*='align'], .tempera-image-two .entry-content img[class*='align'],.tempera-image-two .entry-summary img[class*='align'] { border-color:#1693A5;} #content p, #content ul, #content ol, #content, #frontpage blockquote { text-align:Default ; } #content p, #content ul, #content ol, #content dl, .widget-area, .widget-area a, table, table td { font-size:15px; word-spacing:Default; letter-spacing:Default; } #content p, #content ul, #content ol, content dl, .widget-area, .widget-area a { line-height:1.7em; } #content h1.entry-title, #content h2.entry-title { font-size:34px ;} .widget-title, .widget-title a { font-size:18px ;} #content .entry-content h1 { font-size: 38px;} #content .entry-content h2 { font-size: 34px;} #content .entry-content h3 { font-size: 29px;} #content .entry-content h4 { font-size: 24px;} #content .entry-content h5 { font-size: 19px;} #content .entry-content h6 { font-size: 14px;} #site-title span a { font-size:38px ;} #access ul li a { font-size:14px ;} #access ul ul ul a {font-size:12px;} #header-container > div { margin:40px 0 0 0px;} #content p, #content ul, #content ol, #content dd, #content pre, #content hr { margin-bottom: 1.0em; } #toTop {background:#FFFFFF;margin-left:1300px;} #toTop:hover .icon-back2top:before {color:#D6341D;} #main {margin-top:20px; } #forbottom {margin-left: 30px; margin-right: 30px;} #header-widget-area { width: 33%; } #branding { height:120px; } </style> 
+
+<link rel="stylesheet" id="tempera_style_mobile" href="./expresionesregulareshabituales1_files/style-mobile.css" type="text/css" media="all"><link rel="icon" href="https://eldesvandejose.com/wp-content/uploads/2016/10/cropped-icono-32x32.png" sizes="32x32">
+<link rel="icon" href="https://eldesvandejose.com/wp-content/uploads/2016/10/cropped-icono-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://eldesvandejose.com/wp-content/uploads/2016/10/cropped-icono-180x180.png">
+<meta name="msapplication-TileImage" content="https://eldesvandejose.com/wp-content/uploads/2016/10/cropped-icono-270x270.png">
+<!--[if lt IE 9]>
+<script>
+document.createElement('header');
+document.createElement('nav');
+document.createElement('section');
+document.createElement('article');
+document.createElement('aside');
+document.createElement('footer');
+</script>
+<![endif]-->
+<script type="text/javascript">
+function makeDoubleDelegate(function1, function2) {
+	/* concatenate functions */
+    return function() { if (function1) function1(); if (function2) function2(); }
+}
+
+function tempera_onload() {
+    /* Add responsive videos */
+    jQuery(".entry-content").fitVids();
+	}; // tempera_onload
+
+jQuery(document).ready(function(){
+	/* enable mobile menu handle */
+	tempera_mobilemenu_init();
+});
+
+// make sure not to lose previous onload events
+window.onload = makeDoubleDelegate(window.onload, tempera_onload );
+</script>
+</head>
+<body class="post-template-default single single-post postid-3072 single-format-standard custom-background tempera-image-three caption-dark tempera-menu-left">
+
+
+<div id="wrapper" class="hfeed">
+<div id="topbar"><div id="topbar-inner"> <nav class="topmenu"><ul id="menu-usuarios" class="menu"><li id="menu-item-3257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3257 first-child"><a href="https://eldesvandejose.com/contacta-con-nosotros/">Contacto</a></li>
+<li id="menu-item-751" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-751"><a href="https://eldesvandejose.com/terminos-y-condiciones/">Términos y condiciones</a></li>
+<li class="menu-header-search last-child">
+							<i class="search-icon"></i> 
+<form role="search" method="get" class="searchform" action="https://eldesvandejose.com/">
+	<label>
+		<span class="screen-reader-text">Búsqueda para:</span>
+		<input type="search" class="s" placeholder="Buscar" value="" name="s">
+	</label>
+	<button type="submit" class="searchsubmit"><span class="screen-reader-text">Buscar</span><i class="icon-search"></i></button>
+</form>
+</li></ul></nav><div class="socials" id="sheader">
+			<a target="_blank" href="https://www.facebook.com/groups/recursosparaprogramadores/" class="socialicons social-Facebook" title="Facebook">
+				<img alt="Facebook" src="./expresionesregulareshabituales1_files/Facebook.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="https://plus.google.com/share?url=http%3A%2F%2Feldesvandejose.com" class="socialicons social-GooglePlus" title="GooglePlus">
+				<img alt="GooglePlus" src="./expresionesregulareshabituales1_files/GooglePlus.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="http://eldesvandejose.com/feed/" class="socialicons social-RSS" title="RSS">
+				<img alt="RSS" src="./expresionesregulareshabituales1_files/RSS.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="https://twitter.com/programacion67" class="socialicons social-Twitter" title="Twitter">
+				<img alt="Twitter" src="./expresionesregulareshabituales1_files/Twitter.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="http://www.linkedin.com/share?url=http%3A%2F%2Feldesvandejose.com" class="socialicons social-LinkedIn" title="LinkedIn">
+				<img alt="LinkedIn" src="./expresionesregulareshabituales1_files/LinkedIn.png">
+			<div class="socials-hover"></div></a></div> </div></div>
+<div class="socials" id="srights">
+			<a target="_blank" href="https://www.facebook.com/groups/recursosparaprogramadores/" class="socialicons social-Facebook" title="Facebook">
+				<img alt="Facebook" src="./expresionesregulareshabituales1_files/Facebook.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="https://plus.google.com/share?url=http%3A%2F%2Feldesvandejose.com" class="socialicons social-GooglePlus" title="GooglePlus">
+				<img alt="GooglePlus" src="./expresionesregulareshabituales1_files/GooglePlus.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="http://eldesvandejose.com/feed/" class="socialicons social-RSS" title="RSS">
+				<img alt="RSS" src="./expresionesregulareshabituales1_files/RSS.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="https://twitter.com/programacion67" class="socialicons social-Twitter" title="Twitter">
+				<img alt="Twitter" src="./expresionesregulareshabituales1_files/Twitter.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="http://www.linkedin.com/share?url=http%3A%2F%2Feldesvandejose.com" class="socialicons social-LinkedIn" title="LinkedIn">
+				<img alt="LinkedIn" src="./expresionesregulareshabituales1_files/LinkedIn.png">
+			<div class="socials-hover"></div></a></div>
+<div id="header-full">
+	<header id="header">
+		<div id="masthead">
+			<div id="branding" role="banner">
+				<div id="header-container">
+<div><div id="site-title"><span> <a href="https://eldesvandejose.com/" title="Recursos para programadores" rel="home">Recursos para programadores</a> </span></div><div id="site-description">El desván de Jose</div></div></div>						<div id="header-widget-area">
+			<ul class="yoyo">
+				<li id="custom_html-2" class="widget_text widget-container widget_custom_html first-child last-child"><div class="textwidget custom-html-widget"><div>
+	<a href="http://httpmasters.es/" target="_blank" title="El blog para desarrolladores web" rel="noopener noreferrer"><img src="./expresionesregulareshabituales1_files/logo_http_masters.gif" border="0"></a>
+</div></div></li>			</ul>
+		</div>
+						<div style="clear:both;"></div>
+			</div><!-- #branding -->
+			<a id="nav-toggle"><span>&nbsp;</span></a>
+			<nav id="access" role="navigation">
+				<div class="skip-link screen-reader-text"><a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/#content" title="Saltar al contenido">Saltar al contenido</a></div>
+<div class="menu"><ul id="prime_nav" class="menu"><li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-22 first-child"><a href="https://eldesvandejose.com/"><span>Inicio</span></a></li>
+<li id="menu-item-1580" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1580"><a href="https://eldesvandejose.com/mapa-web/"><span>Mapa web</span></a></li>
+<li id="menu-item-25" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-25"><a href="https://eldesvandejose.com/category/arduino/" aria-haspopup="true"><span>Arduino</span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-79" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-79 first-child"><a href="https://eldesvandejose.com/category/arduino/tutoriales-de-arduino/" aria-haspopup="true"><span>Tutoriales de Arduino</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-56" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-56 first-child"><a href="https://eldesvandejose.com/2016/03/26/introduccion-a-arduino/"><span>01 – Introducción a Arduino</span></a></li>
+		<li id="menu-item-76" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-76"><a href="https://eldesvandejose.com/2016/03/27/el-primer-sketch/"><span>02 – El primer Sketch</span></a></li>
+		<li id="menu-item-87" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-87"><a href="https://eldesvandejose.com/2016/03/28/entrada-y-salida/"><span>03 – Entrada y salida</span></a></li>
+		<li id="menu-item-97" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-97"><a href="https://eldesvandejose.com/2016/03/28/pwm/"><span>04 – PWM</span></a></li>
+		<li id="menu-item-104" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-104"><a href="https://eldesvandejose.com/2016/03/28/entradas-analogicas/"><span>05 – Entradas analógicas</span></a></li>
+		<li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-110"><a href="https://eldesvandejose.com/2016/03/28/datos-en-serie/"><span>06 – Datos en serie</span></a></li>
+		<li id="menu-item-126" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-126"><a href="https://eldesvandejose.com/2016/03/28/calibracion-manual/"><span>07 – Calibración manual</span></a></li>
+		<li id="menu-item-141" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-141"><a href="https://eldesvandejose.com/2016/03/28/calibracion-automatica/"><span>08 – Calibración automática</span></a></li>
+		<li id="menu-item-157" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-157"><a href="https://eldesvandejose.com/2016/03/28/servomotores/"><span>09 – Servomotores</span></a></li>
+		<li id="menu-item-170" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-170"><a href="https://eldesvandejose.com/2016/03/28/motores/"><span>10 – Motores</span></a></li>
+		<li id="menu-item-177" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-177"><a href="https://eldesvandejose.com/2016/03/28/sonido/"><span>11 – Sonido</span></a></li>
+		<li id="menu-item-202" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-202"><a href="https://eldesvandejose.com/2016/03/28/pantalla-lcd/"><span>12 – Pantalla LCD</span></a></li>
+		<li id="menu-item-213" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-213"><a href="https://eldesvandejose.com/2016/03/29/teclados-matriciales/"><span>13 – Teclados matriciales</span></a></li>
+		<li id="menu-item-247" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-247"><a href="https://eldesvandejose.com/2016/03/29/display-led-de-siete-segmentos/"><span>14 – Display LED de siete segmentos</span></a></li>
+		<li id="menu-item-272" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-272"><a href="https://eldesvandejose.com/2016/03/29/arduino-mega/"><span>15 – Arduino Mega</span></a></li>
+		<li id="menu-item-412" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-412"><a href="https://eldesvandejose.com/2016/04/09/mas-sobre-leds/"><span>16 – Más sobre LED’s</span></a></li>
+		<li id="menu-item-536" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-536"><a href="https://eldesvandejose.com/2016/04/23/pantalla-tactil-tft/"><span>17 – Pantalla táctil TFT</span></a></li>
+		<li id="menu-item-590" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-590"><a href="https://eldesvandejose.com/2016/05/01/la-tarjeta-esplora/"><span>18 – La tarjeta Esplora</span></a></li>
+		<li id="menu-item-599" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-599 last-child"><a href="https://eldesvandejose.com/2016/05/01/tarjeta-esplora-con-tft/"><span>19 – Tarjeta Esplora con TFT</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-318" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-318"><a href="https://eldesvandejose.com/category/arduino/referencia-de-sintaxis/" aria-haspopup="true"><span>Referencia de sintaxis</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-310" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-310 first-child"><a href="https://eldesvandejose.com/2016/04/01/sintaxis-i-estructura-basica-de-sketches/"><span>Sintaxis (I). Estructura básica de sketches</span></a></li>
+		<li id="menu-item-357" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-357"><a href="https://eldesvandejose.com/2016/04/03/sintaxis-ii-las-secciones-setup-y-loop/"><span>Sintaxis (II). Las secciones setup y loop</span></a></li>
+		<li id="menu-item-364" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-364"><a href="https://eldesvandejose.com/2016/04/03/sintaxis-iii-aritmetica/"><span>Sintaxis (III). Aritmética</span></a></li>
+		<li id="menu-item-413" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-413"><a href="https://eldesvandejose.com/2016/04/07/la-sintaxis-de-arduino-iv/"><span>Sintaxis (IV). Control de flujo</span></a></li>
+		<li id="menu-item-918" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-918"><a href="https://eldesvandejose.com/2016/06/04/sintaxis-v-tipos-de-datos/"><span>Sintaxis (V). Tipos de datos</span></a></li>
+		<li id="menu-item-928" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-928 last-child"><a href="https://eldesvandejose.com/2016/06/05/sintaxis-vi-la-clase-string/"><span>Sintaxis (VI). La clase String</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-315" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-315 last-child"><a href="https://eldesvandejose.com/category/arduino/librerias_y_recursos/" aria-haspopup="true"><span>Librerías y Recursos</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-316" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-316 first-child"><a href="https://eldesvandejose.com/2016/04/01/la-libreria-eeprom/"><span>LA LIBRERÍA EEPROM</span></a></li>
+		<li id="menu-item-332" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-332"><a href="https://eldesvandejose.com/2016/04/02/la-libreria-liquidcrystal/"><span>LA LIBRERÍA LiquidCrystal</span></a></li>
+		<li id="menu-item-341" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-341"><a href="https://eldesvandejose.com/2016/04/02/la-libreria-servo/"><span>LA LIBRERÍA Servo</span></a></li>
+		<li id="menu-item-414" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-414"><a href="https://eldesvandejose.com/2016/04/07/la-libreria-ledcontrol/"><span>LA LIBRERÍA LedControl</span></a></li>
+		<li id="menu-item-534" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-534"><a href="https://eldesvandejose.com/2016/04/23/la-libreria-adafruit_tftlcd/"><span>LA LIBRERÍA Adafruit_TFTLCD</span></a></li>
+		<li id="menu-item-535" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-535"><a href="https://eldesvandejose.com/2016/04/23/la-libreria-touchscreen/"><span>LA LIBRERÍA TouchScreen</span></a></li>
+		<li id="menu-item-579" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-579"><a href="https://eldesvandejose.com/2016/04/30/la-libreria-esplora/"><span>LA LIBRERÍA Esplora</span></a></li>
+		<li id="menu-item-608" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-608"><a href="https://eldesvandejose.com/2016/05/04/la-libreria-tft-2/"><span>LA LIBRERÍA TFT</span></a></li>
+		<li id="menu-item-633" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-633"><a href="https://eldesvandejose.com/2016/05/10/la-libreria-spi/"><span>LA LIBRERÍA SPI</span></a></li>
+		<li id="menu-item-678" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-678"><a href="https://eldesvandejose.com/2016/05/12/la-libreria-sd/"><span>LA LIBRERÍA SD</span></a></li>
+		<li id="menu-item-527" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-527 last-child"><a href="https://eldesvandejose.com/2016/04/23/incluir-un-sketch-en-otro/"><span>Incluir un sketch en otro</span></a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-797" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-797"><a href="https://eldesvandejose.com/category/processing/" aria-haspopup="true"><span>Processing</span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-798" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-798 first-child"><a href="https://eldesvandejose.com/2016/05/19/que-es-processing/"><span>Qué es Processing</span></a></li>
+	<li id="menu-item-875" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-875"><a href="https://eldesvandejose.com/2016/05/25/empezando-con-processing/"><span>Empezando con Processing</span></a></li>
+	<li id="menu-item-1022" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1022"><a href="https://eldesvandejose.com/2016/06/11/primitivas-3d/"><span>Primitivas 3D</span></a></li>
+	<li id="menu-item-1125" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1125"><a href="https://eldesvandejose.com/2016/06/17/el-efecto-moire/"><span>El efecto Moiré</span></a></li>
+	<li id="menu-item-1214" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1214"><a href="https://eldesvandejose.com/2016/07/02/jugando-con-el-raton/"><span>Jugando con el ratón</span></a></li>
+	<li id="menu-item-1314" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1314"><a href="https://eldesvandejose.com/category/processing/los-menus-de-processing/" aria-haspopup="true"><span>Los menús de Processing</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1237" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1237 first-child"><a href="https://eldesvandejose.com/2016/07/08/los-menus-de-processing-i-archivo/"><span>Los menús de Processing (I): Archivo</span></a></li>
+		<li id="menu-item-1246" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1246"><a href="https://eldesvandejose.com/2016/07/10/los-menus-de-processing-ii-editar/"><span>Los menús de Processing (II): Editar</span></a></li>
+		<li id="menu-item-1281" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1281"><a href="https://eldesvandejose.com/2016/07/15/los-menus-de-processing-iii-sketch/"><span>Los menús de Processing (III): Sketch</span></a></li>
+		<li id="menu-item-1302" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1302"><a href="https://eldesvandejose.com/2016/07/25/los-menus-de-processing-iv-depuracion/"><span>Los menús de Processing (IV): Depuración</span></a></li>
+		<li id="menu-item-1309" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1309"><a href="https://eldesvandejose.com/2016/07/26/los-menus-de-processing-v-herramientas/"><span>Los menús de Processing (V): Herramientas</span></a></li>
+		<li id="menu-item-1311" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1311 last-child"><a href="https://eldesvandejose.com/2016/07/26/los-menus-de-processing-vi-ayuda/"><span>Los menús de Processing (VI): Ayuda</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-1318" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1318 last-child"><a href="https://eldesvandejose.com/2016/07/27/el-teclado-y-la-ventana/"><span>El teclado y la ventana</span></a></li>
+</ul>
+</li>
+<li id="menu-item-488" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-488"><a href="https://eldesvandejose.com/category/php/" aria-haspopup="true"><span>PHP y MySQL</span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2973" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2973 first-child"><a href="https://eldesvandejose.com/category/php/mysql/" aria-haspopup="true"><span>MySQL</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-3662" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3662 first-child"><a href="https://eldesvandejose.com/2018/09/14/poniendo-mysql-en-utf-8/"><span>Poniendo MySQL en UTF-8</span></a></li>
+		<li id="menu-item-2974" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2974"><a href="https://eldesvandejose.com/category/php/mysql/uniendo-tablas-mysql/" aria-haspopup="true"><span>Uniendo tablas MySQL</span></a>
+		<ul class="sub-menu" style="display: none;">
+			<li id="menu-item-2975" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2975 first-child"><a href="https://eldesvandejose.com/2017/04/29/uniendo-tablas-mysql-i-introduccion/"><span>Uniendo tablas MySQL (I). Introducción.</span></a></li>
+			<li id="menu-item-2986" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2986"><a href="https://eldesvandejose.com/2017/05/01/uniendo-tablas-mysql-ii-uniones-externas/"><span>Uniendo tablas MySQL (II). Uniones externas.</span></a></li>
+			<li id="menu-item-2994" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2994"><a href="https://eldesvandejose.com/2017/05/04/uniendo-tablas-mysql-iii-autocombinaciones/"><span>Uniendo tablas MySQL (III). Autocombinaciones.</span></a></li>
+			<li id="menu-item-3002" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3002 last-child"><a href="https://eldesvandejose.com/2017/05/07/uniendo-tablas-mysql-y-iv-uniones-con-mas-de-dos-tablas/"><span>Uniendo tablas MySQL (y IV). Uniones con más de dos tablas.</span></a></li>
+		</ul>
+</li>
+		<li id="menu-item-3006" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3006 last-child"><a href="https://eldesvandejose.com/2017/05/08/vistas-en-mysql/"><span>Vistas en MySQL</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-489" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-489"><a href="https://eldesvandejose.com/category/php/tutoriales_de_php/" aria-haspopup="true"><span>Tutoriales de PHP</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-490" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-490 first-child"><a href="https://eldesvandejose.com/2016/04/21/la-arquitectura-cliente-servidor/"><span>La arquitectura Cliente – Servidor</span></a></li>
+		<li id="menu-item-518" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-518"><a href="https://eldesvandejose.com/2016/04/22/montando-los-servidores/"><span>Montando los servidores</span></a></li>
+		<li id="menu-item-556" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-556"><a href="https://eldesvandejose.com/2016/04/27/manejo-basico-de-datos-con-php/"><span>Manejo básico de datos con PHP</span></a></li>
+		<li id="menu-item-568" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-568"><a href="https://eldesvandejose.com/2016/04/29/matrices-en-php-i/"><span>Matrices en PHP (I)</span></a></li>
+		<li id="menu-item-573" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-573"><a href="https://eldesvandejose.com/2016/04/29/bases-de-numeracion-en-php/"><span>Bases de numeración en PHP</span></a></li>
+		<li id="menu-item-617" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-617"><a href="https://eldesvandejose.com/2016/05/05/estructuras-de-control-de-flujo/"><span>Estructuras de control de flujo</span></a></li>
+		<li id="menu-item-624" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-624"><a href="https://eldesvandejose.com/2016/05/08/funciones-de-usuario/"><span>Funciones de usuario</span></a></li>
+		<li id="menu-item-758" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-758"><a href="https://eldesvandejose.com/2016/05/16/php-tut-08-matrices-en-php-ii/"><span>Matrices en PHP (II)</span></a></li>
+		<li id="menu-item-780" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-780"><a href="https://eldesvandejose.com/2016/05/19/formularios-en-php-i/"><span>Formularios en PHP (I)</span></a></li>
+		<li id="menu-item-781" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-781"><a href="https://eldesvandejose.com/2016/05/19/formularios-en-php-y-ii/"><span>Formularios en PHP (y II)</span></a></li>
+		<li id="menu-item-806" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-806"><a href="https://eldesvandejose.com/2016/05/20/manejo-de-datos-i/"><span>Manejo de datos (I)</span></a></li>
+		<li id="menu-item-815" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-815"><a href="https://eldesvandejose.com/2016/05/21/manejo-de-datos-y-ii/"><span>Manejo de datos (y II)</span></a></li>
+		<li id="menu-item-885" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-885"><a href="https://eldesvandejose.com/2016/05/27/expresiones-regulares/"><span>Expresiones regulares</span></a></li>
+		<li id="menu-item-954" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-954"><a href="https://eldesvandejose.com/2016/06/06/reutilizacion-de-codigo/"><span>Reutilización de código</span></a></li>
+		<li id="menu-item-961" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-961"><a href="https://eldesvandejose.com/2016/06/07/ficheros-en-disco/"><span>Ficheros en disco</span></a></li>
+		<li id="menu-item-967" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-967"><a href="https://eldesvandejose.com/2016/06/08/permisos-para-directorios-y-archivos/"><span>Permisos para directorios y archivos</span></a></li>
+		<li id="menu-item-1035" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1035"><a href="https://eldesvandejose.com/2016/06/13/cookies-y-sesiones/"><span>Cookies y Sesiones</span></a></li>
+		<li id="menu-item-1043" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1043"><a href="https://eldesvandejose.com/2016/06/14/php-tut-18-la-comunicacion-web/"><span>La comunicación web</span></a></li>
+		<li id="menu-item-1049" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1049"><a href="https://eldesvandejose.com/2016/06/14/orientacion-a-objetos-en-php/"><span>Orientación a objetos en PHP</span></a></li>
+		<li id="menu-item-1061" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1061"><a href="https://eldesvandejose.com/2016/06/15/gestion-de-imagenes-i/"><span>Gestión de imágenes (I)</span></a></li>
+		<li id="menu-item-1075" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1075"><a href="https://eldesvandejose.com/2016/06/15/gestion-de-imagenes-ii/"><span>Gestión de imágenes (II)</span></a></li>
+		<li id="menu-item-1097" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1097"><a href="https://eldesvandejose.com/2016/06/17/bases-de-datos-sql-i/"><span>Bases de datos SQL (I)</span></a></li>
+		<li id="menu-item-1100" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1100"><a href="https://eldesvandejose.com/2016/06/17/bases-de-datos-sql-ii/"><span>Bases de datos SQL (II)</span></a></li>
+		<li id="menu-item-1107" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1107 last-child"><a href="https://eldesvandejose.com/2016/06/17/configuracion-de-php-directivas-y-extensiones/"><span>Configuración de PHP. Directivas y extensiones.</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-547" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-547"><a href="https://eldesvandejose.com/category/php/trucos_y_recursos_php/" aria-haspopup="true"><span>Trucos y recursos PHP</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-3829" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-3829 first-child"><a href="https://eldesvandejose.com/category/php/trucos_y_recursos_php/curl/" aria-haspopup="true"><span>cURL</span></a>
+		<ul class="sub-menu" style="display: none;">
+			<li id="menu-item-3830" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3830 first-child"><a href="https://eldesvandejose.com/2019/07/31/que-es-curl/"><span>Qué es cURL</span></a></li>
+			<li id="menu-item-3831" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3831"><a href="https://eldesvandejose.com/2019/07/31/inicializar-curl-en-php/"><span>Inicializar cURL en PHP</span></a></li>
+			<li id="menu-item-3832" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3832"><a href="https://eldesvandejose.com/2019/07/31/enviando-archivos-por-curl/"><span>Enviando archivos por cURL</span></a></li>
+			<li id="menu-item-3833" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3833"><a href="https://eldesvandejose.com/2019/07/31/curl-mas-modos-de-envio/"><span>cURL. Más modos de envío.</span></a></li>
+			<li id="menu-item-3834" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3834"><a href="https://eldesvandejose.com/2019/07/31/leer-archivos-por-curl/"><span>Leer archivos por cURL</span></a></li>
+			<li id="menu-item-3835" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3835 last-child"><a href="https://eldesvandejose.com/2019/07/31/clase-para-usar-curl-en-php/"><span>Clase para usar cURL en PHP</span></a></li>
+		</ul>
+</li>
+		<li id="menu-item-3761" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-3761"><a href="https://eldesvandejose.com/category/php/trucos_y_recursos_php/inyectar-datos-en-un-formulario-pdf/" aria-haspopup="true"><span>Inyectar datos en un formulario PDF</span></a>
+		<ul class="sub-menu" style="display: none;">
+			<li id="menu-item-3764" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3764 first-child"><a href="https://eldesvandejose.com/2019/06/19/editar-formularios-pdf-con-php-i/"><span>Editar formularios PDF con PHP (I)</span></a></li>
+			<li id="menu-item-3762" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3762"><a href="https://eldesvandejose.com/2019/06/22/editar-formularios-pdf-con-php-ii/"><span>Editar formularios PDF con PHP (II)</span></a></li>
+			<li id="menu-item-3763" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3763 last-child"><a href="https://eldesvandejose.com/2019/06/22/editar-formularios-pdf-con-php-y-iii/"><span>Editar formularios PDF con PHP (y III)</span></a></li>
+		</ul>
+</li>
+		<li id="menu-item-3630" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3630"><a href="https://eldesvandejose.com/2018/04/11/comprimir-un-directorio-con-php/"><span>Comprimir un directorio con PHP</span></a></li>
+		<li id="menu-item-3565" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3565"><a href="https://eldesvandejose.com/2018/03/09/la-marca-bom-en-utf-8/"><span>La marca BOM en UTF-8</span></a></li>
+		<li id="menu-item-3169" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3169"><a href="https://eldesvandejose.com/2017/11/14/comprobar-el-dominio-de-un-correo-electronico/"><span>Comprobar el dominio de un correo electrónico</span></a></li>
+		<li id="menu-item-3164" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3164"><a href="https://eldesvandejose.com/2017/11/13/log-de-errores-por-correo-electronico/"><span>Log de errores por correo electrónico.</span></a></li>
+		<li id="menu-item-3156" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3156"><a href="https://eldesvandejose.com/2017/10/27/identificadores-unicos-en-php/"><span>Identificadores únicos en PHP</span></a></li>
+		<li id="menu-item-3143" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3143"><a href="https://eldesvandejose.com/2017/10/11/validacion-de-datos-en-php/"><span>Validación de datos en PHP</span></a></li>
+		<li id="menu-item-3128" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3128"><a href="https://eldesvandejose.com/2017/08/31/captura-de-errores-en-php/"><span>Captura de errores en PHP</span></a></li>
+		<li id="menu-item-3014" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-3014"><a href="https://eldesvandejose.com/category/php/trucos_y_recursos_php/el-gestor-de-dependencias-composer/" aria-haspopup="true"><span>El gestor de dependencias Composer</span></a>
+		<ul class="sub-menu" style="display: none;">
+			<li id="menu-item-3017" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3017 first-child"><a href="https://eldesvandejose.com/2016/07/05/composer-i-que-es-y-como-obtenerlo/"><span>Composer (I). Qué es y cómo obtenerlo</span></a></li>
+			<li id="menu-item-3016" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3016"><a href="https://eldesvandejose.com/2017/05/09/composer-ii-uso-basico/"><span>Composer (II). Uso básico.</span></a></li>
+			<li id="menu-item-3015" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3015 last-child"><a href="https://eldesvandejose.com/2017/05/09/composer-y-iii-uso-habitual-de-composer/"><span>Composer (y III). Uso habitual de composer.</span></a></li>
+		</ul>
+</li>
+		<li id="menu-item-2941" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2941"><a href="https://eldesvandejose.com/category/php/trucos_y_recursos_php/espacios-de-nombres-namespaces-en-php/" aria-haspopup="true"><span>Espacios de nombres (namespaces) en PHP</span></a>
+		<ul class="sub-menu" style="display: none;">
+			<li id="menu-item-2942" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2942 first-child"><a href="https://eldesvandejose.com/2017/04/25/espacios-de-nombres-en-php-i-introduccion/"><span>Espacios de nombres en PHP (I). Introducción.</span></a></li>
+			<li id="menu-item-2949" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2949"><a href="https://eldesvandejose.com/2017/04/26/espacios-de-nombres-en-php-ii-agrupando-namespaces/"><span>Espacios de nombres en PHP (II). Agrupando Namespaces.</span></a></li>
+			<li id="menu-item-2959" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2959 last-child"><a href="https://eldesvandejose.com/2017/04/28/espacios-de-nombres-en-php-y-iii-jerarquia-de-namespaces/"><span>Espacios de nombres en PHP (y III). Jerarquía de namespaces.</span></a></li>
+		</ul>
+</li>
+		<li id="menu-item-546" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-546"><a href="https://eldesvandejose.com/2016/04/25/manejo-de-fechas-en-php/"><span>Manejo de fechas en PHP</span></a></li>
+		<li id="menu-item-696" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-696"><a href="https://eldesvandejose.com/2016/05/12/insertar-elementos-en-medio-de-una-matriz-en-php/"><span>Insertar elementos en medio de una matriz en PHP</span></a></li>
+		<li id="menu-item-1740" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1740"><a href="https://eldesvandejose.com/2016/10/07/ordenar-matrices-multidimensionales-en-php/"><span>Ordenar matrices multidimensionales</span></a></li>
+		<li id="menu-item-2729" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2729"><a href="https://eldesvandejose.com/2017/02/21/rotacion-automatica-de-imagenes/"><span>Rotación automática de imágenes</span></a></li>
+		<li id="menu-item-900" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-900"><a href="https://eldesvandejose.com/2016/05/29/el-servidor-de-correo-electronico/"><span>El servidor de correo electrónico</span></a></li>
+		<li id="menu-item-909" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-909"><a href="https://eldesvandejose.com/2016/06/02/correos-electronicos-con-phpmailer/"><span>Correos electrónicos con PHPMailer</span></a></li>
+		<li id="menu-item-1069" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1069"><a href="https://eldesvandejose.com/2016/06/15/escalado-de-imagenes-con-php/"><span>Escalado de imágenes con PHP</span></a></li>
+		<li id="menu-item-1091" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1091"><a href="https://eldesvandejose.com/2016/06/16/uso-de-mysql-con-pdo-php-conectar-leer-y-escribir/"><span>Uso de MySQL con PDO – PHP (I). Conectar, leer y escribir.</span></a></li>
+		<li id="menu-item-2827" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2827"><a href="https://eldesvandejose.com/2017/03/26/uso-de-mysql-con-pdo-php-ii-tratamiento-de-excepciones/"><span>Uso de MySQL con PDO – PHP (II). Tratamiento de excepciones.</span></a></li>
+		<li id="menu-item-1117" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1117"><a href="https://eldesvandejose.com/2016/06/17/depuracion-en-php/"><span>Depuración en PHP</span></a></li>
+		<li id="menu-item-1208" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1208"><a href="https://eldesvandejose.com/2016/07/01/generar-documentos-pdf-con-php/"><span>Generar documentos PDF con PHP</span></a></li>
+		<li id="menu-item-1273" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1273"><a href="https://eldesvandejose.com/2016/07/14/seguridad-de-acceso-en-php-i-contrasenas-reversibles/"><span>Seguridad de acceso en PHP (I). Contraseñas reversibles.</span></a></li>
+		<li id="menu-item-1272" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1272"><a href="https://eldesvandejose.com/2016/07/14/seguridad-de-acceso-en-php-ii-contrasenas-no-reversibles/"><span>Seguridad de acceso en PHP (II). Contraseñas no reversibles.</span></a></li>
+		<li id="menu-item-1476" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1476"><a href="https://eldesvandejose.com/2016/08/25/codificacion-utf-8-con-php/"><span>Codificación UTF-8 con PHP</span></a></li>
+		<li id="menu-item-1571" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1571"><a href="https://eldesvandejose.com/2016/09/25/cambiar-la-contrasena-de-root-en-phpmyadmin/"><span>Cambiar la contraseña de root en PHPMyAdmin</span></a></li>
+		<li id="menu-item-1599" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1599"><a href="https://eldesvandejose.com/2016/10/03/almacenar-imagenes-en-base-de-datos-con-php/"><span>Almacenar imágenes en base de datos con PHP</span></a></li>
+		<li id="menu-item-1747" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1747"><a href="https://eldesvandejose.com/2016/10/09/codigos-qr-en-php/"><span>Códigos QR en PHP</span></a></li>
+		<li id="menu-item-2427" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2427"><a href="https://eldesvandejose.com/2016/12/28/internacionalizacion-en-php-i-internacionalizar-el-texto/"><span>Internacionalización en PHP (I). Internacionalizar el texto.</span></a></li>
+		<li id="menu-item-2426" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2426 last-child"><a href="https://eldesvandejose.com/2016/12/28/internacionalizacion-en-php-y-ii-los-ficheros-de-traducciones/"><span>Internacionalización en PHP (y II). Los ficheros de traducciones.</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-1523" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1523 last-child"><a href="https://eldesvandejose.com/category/php/ficheros-xml-con-php/" aria-haspopup="true"><span>Ficheros XML con PHP</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1528" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1528 first-child"><a href="https://eldesvandejose.com/2016/09/03/crear-xml-con-php-i/"><span>Crear XML con PHP (I)</span></a></li>
+		<li id="menu-item-1527" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1527"><a href="https://eldesvandejose.com/2016/09/03/crear-xml-con-php-ii/"><span>Crear XML con PHP (II)</span></a></li>
+		<li id="menu-item-1526" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1526"><a href="https://eldesvandejose.com/2016/09/03/crear-xml-con-php-iii/"><span>Crear XML con PHP (III)</span></a></li>
+		<li id="menu-item-2370" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2370"><a href="https://eldesvandejose.com/2016/12/24/crear-xml-con-php-iv/"><span>Crear XML con PHP (IV)</span></a></li>
+		<li id="menu-item-1525" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1525"><a href="https://eldesvandejose.com/2016/09/03/leer-xml-con-php-i/"><span>Leer XML con PHP (I)</span></a></li>
+		<li id="menu-item-1524" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1524 last-child"><a href="https://eldesvandejose.com/2016/09/03/leer-xml-con-php-ii/"><span>Leer XML con PHP (II)</span></a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-994" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-994"><a href="https://eldesvandejose.com/category/jquery/" aria-haspopup="true"><span>jQuery</span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-1826" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1826 first-child"><a href="https://eldesvandejose.com/category/jquery/tutoriales-de-jquery/" aria-haspopup="true"><span>Tutoriales de jQuery</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-1827" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1827 first-child"><a href="https://eldesvandejose.com/2016/10/21/ajax-con-jquery-i/"><span>Ajax con jQuery (I)</span></a></li>
+		<li id="menu-item-1828" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1828"><a href="https://eldesvandejose.com/2016/10/21/ajax-con-jquery-ii/"><span>Ajax con jQuery (II)</span></a></li>
+		<li id="menu-item-1829" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1829 last-child"><a href="https://eldesvandejose.com/2016/10/21/ajax-con-jquery-y-iii/"><span>Ajax con jQuery (y III)</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-995" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-995 last-child"><a href="https://eldesvandejose.com/category/jquery/hacks-y-recursos/" aria-haspopup="true"><span>Hacks y recursos</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-3631" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3631 first-child"><a href="https://eldesvandejose.com/2018/04/11/barras-de-scroll-personalizadas/"><span>Barras de scroll personalizadas</span></a></li>
+		<li id="menu-item-3067" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3067"><a href="https://eldesvandejose.com/2017/07/22/plugin-jquery-para-recorte-de-imagenes/"><span>Plugin jQuery para recorte de imágenes</span></a></li>
+		<li id="menu-item-3039" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3039"><a href="https://eldesvandejose.com/2017/06/14/intercambio-de-opciones-entre-selectores/"><span>Intercambio de opciones entre selectores</span></a></li>
+		<li id="menu-item-3031" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3031"><a href="https://eldesvandejose.com/2017/06/03/plugin-jquery-para-subida-de-archivos/"><span>Plugin jQuery para subida de archivos</span></a></li>
+		<li id="menu-item-2928" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2928"><a href="https://eldesvandejose.com/2017/04/21/eventos-sobre-elementos-creados-on-the-fly/"><span>Eventos sobre elementos creados on the fly</span></a></li>
+		<li id="menu-item-996" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-996"><a href="https://eldesvandejose.com/2016/06/09/enviar-formularios-con-ficheros-por-ajax/"><span>Enviar formularios con ficheros por Ajax</span></a></li>
+		<li id="menu-item-1012" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1012"><a href="https://eldesvandejose.com/2016/06/11/el-plugin-jqalert/"><span>El plugin jqAlert</span></a></li>
+		<li id="menu-item-2294" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2294 last-child"><a href="https://eldesvandejose.com/category/jquery/hacks-y-recursos/el-plugin-datatables/" aria-haspopup="true"><span>El plugin DataTables</span></a>
+		<ul class="sub-menu" style="display: none;">
+			<li id="menu-item-2296" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2296 first-child"><a href="https://eldesvandejose.com/2016/10/29/el-plugin-datatables-i-que-es-y-como-obtenerlo/"><span>El plugin DataTables (I). Qué es y cómo obtenerlo</span></a></li>
+			<li id="menu-item-2295" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2295"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-ii-uso-basico/"><span>El plugin  DataTables (II). Uso básico.</span></a></li>
+			<li id="menu-item-2297" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2297"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-iii-configuracion-por-programacion/"><span>El plugin DataTables (III). Configuración por programación.</span></a></li>
+			<li id="menu-item-2298" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2298"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-iv-mejorando-el-aspecto/"><span>El plugin DataTables (IV). Mejorando el aspecto.</span></a></li>
+			<li id="menu-item-2300" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2300"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-v-consumiendo-datos-externos/"><span>El plugin DataTables (V). Consumiendo datos externos.</span></a></li>
+			<li id="menu-item-2301" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2301"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-vi-combinar-datos-de-varias-tablas/"><span>El plugin DataTables (VI). Combinar datos de varias tablas.</span></a></li>
+			<li id="menu-item-2302" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2302"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-vii-busquedas-personalizables/"><span>El plugin DataTables (VII). Búsquedas personalizables.</span></a></li>
+			<li id="menu-item-2303" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2303"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-viii-ordenaciones-complejas/"><span>El plugin DataTables (VIII). Ordenaciones complejas.</span></a></li>
+			<li id="menu-item-2299" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2299"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-ix-preeditando-datos/"><span>El plugin DataTables (IX). Preeditando datos.</span></a></li>
+			<li id="menu-item-2304" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2304"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-x-datos-desplegables/"><span>El plugin DataTables (X). Datos desplegables.</span></a></li>
+			<li id="menu-item-2305" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2305"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-xi-mostrar-u-ocultar-columnas/"><span>El plugin DataTables (XI). Mostrar u ocultar columnas.</span></a></li>
+			<li id="menu-item-2306" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2306"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-xii-datos-dependientes/"><span>El plugin DataTables (XII). Datos dependientes.</span></a></li>
+			<li id="menu-item-2307" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2307"><a href="https://eldesvandejose.com/2016/12/05/el-plugin-datatables-xiii-optimizando-datos/"><span>El plugin DataTables (XIII). Optimizando datos.</span></a></li>
+			<li id="menu-item-2602" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2602"><a href="https://eldesvandejose.com/2017/01/12/el-plugin-datatables-xiv-mas-tipos-de-datos-desplegables/"><span>El plugin DataTables (XIV). Más tipos de datos desplegables.</span></a></li>
+			<li id="menu-item-2332" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2332"><a href="https://eldesvandejose.com/2016/12/07/el-editor-de-datatables-i-que-es-y-como-obtenerlo/"><span>El editor de DataTables (I). Qué es y cómo obtenerlo.</span></a></li>
+			<li id="menu-item-2333" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2333"><a href="https://eldesvandejose.com/2016/12/07/el-editor-de-datatables-ii-funcionamiento-basico/"><span>El editor de DataTables (II). Funcionamiento básico.</span></a></li>
+			<li id="menu-item-2348" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2348"><a href="https://eldesvandejose.com/2016/12/11/el-editor-de-datatables-iii-formatear-y-comprobar-datos/"><span>El editor de DataTables (III). Formatear y comprobar datos.</span></a></li>
+			<li id="menu-item-2444" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2444"><a href="https://eldesvandejose.com/2016/12/30/el-editor-de-datatables-iv-datos-de-multiples-tablas/"><span>El editor de DataTables (IV). Datos de múltiples tablas.</span></a></li>
+			<li id="menu-item-2517" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2517"><a href="https://eldesvandejose.com/2017/01/07/el-editor-de-datatables-v-tablas-con-relaciones-m-n-leer/"><span>El editor de DataTables (V). Tablas con relaciones m-n (leer)</span></a></li>
+			<li id="menu-item-2526" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2526"><a href="https://eldesvandejose.com/2017/01/09/el-editor-de-datatables-vi-tablas-con-relaciones-m-n-editar/"><span>El editor de DataTables (VI). Tablas con relaciones m-n (editar)</span></a></li>
+			<li id="menu-item-2678" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2678"><a href="https://eldesvandejose.com/2017/01/30/el-editor-de-datatables-vii-otros-tipos-de-campos/"><span>El editor de DataTables (VII). Otros tipos de campos.</span></a></li>
+			<li id="menu-item-2712" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2712"><a href="https://eldesvandejose.com/2017/02/11/el-editor-de-datatables-viii-los-campos-de-tipo-checkbox/"><span>El editor de DataTables (VIII). Los campos de tipo checkbox.</span></a></li>
+			<li id="menu-item-2720" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2720 last-child"><a href="https://eldesvandejose.com/2017/02/14/el-editor-de-datatables-ix-campos-ocultos/"><span>El editor de DataTables (IX). Campos ocultos.</span></a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-1157" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1157"><a href="https://eldesvandejose.com/category/javascript/" aria-haspopup="true"><span>Javascript</span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2933" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2933 first-child"><a href="https://eldesvandejose.com/category/javascript/trucos-y-recursos/" aria-haspopup="true"><span>Trucos y recursos</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-3533" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3533 first-child"><a href="https://eldesvandejose.com/2018/02/27/ordenar-matrices-en-javascript/"><span>Ordenar matrices en JavaScript</span></a></li>
+		<li id="menu-item-3138" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3138"><a href="https://eldesvandejose.com/2017/09/18/prevalidar-ficheros-en-el-lado-del-cliente/"><span>Prevalidar ficheros en el lado del cliente</span></a></li>
+		<li id="menu-item-2934" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2934 last-child"><a href="https://eldesvandejose.com/2017/04/21/eliminar-elementos-en-una-matriz-javascript/"><span>Eliminar elementos en una matriz JavaScript</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-2500" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2500"><a href="https://eldesvandejose.com/category/javascript/javascript-2015/" aria-haspopup="true"><span>Javascript 2015</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2501" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2501 first-child"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-i-introduccion/"><span>JavaScript 2015 (I). Introducción.</span></a></li>
+		<li id="menu-item-2502" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2502"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-ii-constantes-y-variables/"><span>JavaScript 2015 (II). Constantes y variables.</span></a></li>
+		<li id="menu-item-2503" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2503"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-iii-interpolacion-y-mapas/"><span>JavaScript 2015 (III). Interpolación y mapas.</span></a></li>
+		<li id="menu-item-2504" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2504"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-iv-conjuntos-y-desestructuracion/"><span>JavaScript 2015 (IV). Conjuntos y desestructuración.</span></a></li>
+		<li id="menu-item-2505" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2505"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-v-bucles-for-of/"><span>JavaScript 2015 (V). Bucles for…of.</span></a></li>
+		<li id="menu-item-2506" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2506"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-vi-generadores/"><span>JavaScript 2015 (VI). Generadores.</span></a></li>
+		<li id="menu-item-2507" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2507"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-vii-funciones-de-usuario/"><span>JavaScript 2015 (VII). Funciones de usuario.</span></a></li>
+		<li id="menu-item-2508" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2508"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-viii-poo-en-js6/"><span>JavaScript 2015 (VIII). POO en JS6.</span></a></li>
+		<li id="menu-item-2509" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2509"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-ix-metodos-nativos/"><span>JavaScript 2015 (IX). Métodos nativos.</span></a></li>
+		<li id="menu-item-2510" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2510 last-child"><a href="https://eldesvandejose.com/2017/01/05/javascript-2015-y-x-promesas/"><span>JavaScript 2015 (y X). Promesas.</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-1156" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1156"><a href="https://eldesvandejose.com/2016/06/21/la-consola-javascript-del-navegador-i/"><span>La consola JavaScript del navegador (I)</span></a></li>
+	<li id="menu-item-1171" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1171"><a href="https://eldesvandejose.com/2016/06/21/la-consola-javascript-del-navegador-ii/"><span>La consola JavaScript del navegador (II)</span></a></li>
+	<li id="menu-item-1461" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1461"><a href="https://eldesvandejose.com/2016/08/20/gestor-de-dependencias-bower/"><span>Gestor de dependencias Bower</span></a></li>
+	<li id="menu-item-1729" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1729 last-child"><a href="https://eldesvandejose.com/2016/10/06/la-tecnologia-json/"><span>La tecnología JSON</span></a></li>
+</ul>
+</li>
+<li id="menu-item-1398" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-ancestor menu-item-has-children menu-item-1398"><a href="https://eldesvandejose.com/category/articulos-generalistas/" aria-haspopup="true"><span>Otros temas</span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-3667" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3667 first-child"><a href="https://eldesvandejose.com/2018/09/14/borrar-ficheros-con-nombres-muy-largos/"><span>Borrar ficheros con nombres muy largos</span></a></li>
+	<li id="menu-item-3114" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3114"><a href="https://eldesvandejose.com/2017/08/22/esclavizar-un-disco-duro/"><span>Esclavizar un disco duro</span></a></li>
+	<li id="menu-item-3102" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-3102"><a href="https://eldesvandejose.com/category/articulos-generalistas/expresiones-regulares/" aria-haspopup="true"><span>Expresiones regulares</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-3103" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-3103 first-child"><a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/" aria-current="page"><span>Expresiones regulares</span></a></li>
+		<li id="menu-item-3104" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3104"><a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-en-javascript/"><span>Expresiones regulares en JavaScript</span></a></li>
+		<li id="menu-item-3105" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3105 last-child"><a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-en-php/"><span>Expresiones regulares en PHP</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-3054" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3054"><a href="https://eldesvandejose.com/2017/07/07/atajos-de-teclado-en-windows/"><span>Atajos de teclado en Windows</span></a></li>
+	<li id="menu-item-2847" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2847"><a href="https://eldesvandejose.com/category/html-5/" aria-haspopup="true"><span>HTML 5</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-3710" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3710 first-child"><a href="https://eldesvandejose.com/2018/12/28/los-datos-de-un-control-select-multiple/"><span>Los datos de un control select múltiple</span></a></li>
+		<li id="menu-item-3705" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-3705"><a href="https://eldesvandejose.com/2018/12/26/agregar-atributos-a-las-etiquetas-html-5/"><span>Agregar atributos a las etiquetas HTML 5</span></a></li>
+		<li id="menu-item-2848" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2848 last-child"><a href="https://eldesvandejose.com/category/html-5/el-canvas-de-html-5/" aria-haspopup="true"><span>El canvas de HTML 5</span></a>
+		<ul class="sub-menu" style="display: none;">
+			<li id="menu-item-2849" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2849 first-child"><a href="https://eldesvandejose.com/2017/03/29/el-canvas-de-html-5-i-que-es-canvas/"><span>El canvas de HTML 5 (I). Qué es canvas.</span></a></li>
+			<li id="menu-item-2863" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2863"><a href="https://eldesvandejose.com/2017/03/30/el-canvas-de-html-5-ii-trazos-en-2d/"><span>El canvas de HTML 5 (II). Trazos en 2d.</span></a></li>
+			<li id="menu-item-2876" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2876"><a href="https://eldesvandejose.com/2017/03/31/el-canvas-de-html-5-iii-redimensionando-canvas/"><span>El canvas de HTML 5 (III). Redimensionando canvas.</span></a></li>
+			<li id="menu-item-2877" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2877"><a href="https://eldesvandejose.com/2017/03/31/el-canvas-de-html-5-iv-mas-sobre-trazos/"><span>El canvas de HTML 5 (IV). Más sobre trazos.</span></a></li>
+			<li id="menu-item-2889" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2889"><a href="https://eldesvandejose.com/2017/04/02/el-canvas-de-html-5-v-relleno-solido/"><span>El canvas de HTML 5 (V). Relleno sólido.</span></a></li>
+			<li id="menu-item-2896" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2896"><a href="https://eldesvandejose.com/2017/04/04/el-canvas-de-html-5-vi-gradientes/"><span>El canvas de HTML 5 (VI). Gradientes.</span></a></li>
+			<li id="menu-item-2903" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2903"><a href="https://eldesvandejose.com/2017/04/06/el-canvas-de-html-5-vii-gradientes-radiales/"><span>El canvas de HTML 5 (VII). Gradientes radiales.</span></a></li>
+			<li id="menu-item-2912" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2912"><a href="https://eldesvandejose.com/2017/04/19/el-canvas-de-html-5-viii-insertando-imagenes/"><span>El canvas de HTML 5 (VIII). Insertando imágenes.</span></a></li>
+			<li id="menu-item-2919" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2919 last-child"><a href="https://eldesvandejose.com/2017/04/20/el-canvas-de-html-5-ix-combinando-elementos/"><span>El canvas de HTML 5 (IX). Combinando elementos.</span></a></li>
+		</ul>
+</li>
+	</ul>
+</li>
+	<li id="menu-item-2806" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2806"><a href="https://eldesvandejose.com/category/articulos-generalistas/selectores-css-y-jquery/" aria-haspopup="true"><span>Selectores CSS y jQuery</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2809" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2809 first-child"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-i-introduccion-y-selectores-simples/"><span>1 . Introducción y selectores simples.</span></a></li>
+		<li id="menu-item-2810" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2810"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-ii-selectores-compuestos/"><span>2 . Selectores compuestos.</span></a></li>
+		<li id="menu-item-2807" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2807"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-iii-pseudo-elementos/"><span>3 . Pseudo elementos.</span></a></li>
+		<li id="menu-item-2811" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2811"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-iv-pseudo-clases-de_estado/"><span>4 . Pseudo clases de estado.</span></a></li>
+		<li id="menu-item-2812" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2812"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-v-pseudo-clases-de-atributos/"><span>5 . Pseudo clases de atributos.</span></a></li>
+		<li id="menu-item-2813" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2813"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-vi-pseudo-clases-de-contenido/"><span>6 . Pseudo clases de contenido.</span></a></li>
+		<li id="menu-item-2808" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2808"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-vii-pseudo-clases-de-ubicacion/"><span>7 . Pseudo clases de ubicación.</span></a></li>
+		<li id="menu-item-2814" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2814"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-viii-otras-pseudo-clases/"><span>8 . Otras pseudo clases.</span></a></li>
+		<li id="menu-item-2815" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2815 last-child"><a href="https://eldesvandejose.com/2017/03/16/selectores-css-y-jquery-ix-tabla-resumen-de-selectores/"><span>9 . Tabla resumen de selectores.</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-1425" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1425"><a href="https://eldesvandejose.com/2016/08/15/crear-un-virtual-host-en-windows/"><span>Crear un virtual host en Windows</span></a></li>
+	<li id="menu-item-1447" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1447"><a href="https://eldesvandejose.com/2016/08/17/arranque-dual-windows-8-ubuntu/"><span>Arranque dual Windows 8 / Ubuntu</span></a></li>
+	<li id="menu-item-2615" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2615"><a href="https://eldesvandejose.com/2017/01/15/arrancar-un-programa-al-inicio-con-windows-8/"><span>Arrancar un programa al inicio con Windows 8</span></a></li>
+	<li id="menu-item-1550" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-1550"><a href="https://eldesvandejose.com/2016/09/22/formatear-tarjetas-sd/"><span>Formatear tarjetas SD</span></a></li>
+	<li id="menu-item-2365" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2365 last-child"><a href="https://eldesvandejose.com/2016/12/18/convertir-access-a-mysql/"><span>Convertir Access a MySQL</span></a></li>
+</ul>
+</li>
+<li id="menu-item-2168" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2168"><a href="https://eldesvandejose.com/category/libros-gratis/" aria-haspopup="true"><span>Libros gratis</span></a>
+<ul class="sub-menu" style="display: none;">
+	<li id="menu-item-2192" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2192 first-child"><a href="https://eldesvandejose.com/category/libros-gratis/diseno-y-programacion-web/" aria-haspopup="true"><span>Diseño y programación web</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2169" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2169 first-child"><a href="https://eldesvandejose.com/2016/12/02/ataques-a-aplicaciones-web/"><span>Ataques a aplicaciones web</span></a></li>
+		<li id="menu-item-2177" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2177"><a href="https://eldesvandejose.com/2016/12/02/guia-completa-de-css3/"><span>Guía Completa de CSS3</span></a></li>
+		<li id="menu-item-2184" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2184"><a href="https://eldesvandejose.com/2016/12/02/introduccion-a-css/"><span>Introducción a CSS</span></a></li>
+		<li id="menu-item-2170" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2170"><a href="https://eldesvandejose.com/2016/12/02/css-avanzado/"><span>CSS Avanzado</span></a></li>
+		<li id="menu-item-2171" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2171"><a href="https://eldesvandejose.com/2016/12/02/css3-y-javascript-avanzado/"><span>CSS3 y Javascript avanzado</span></a></li>
+		<li id="menu-item-2172" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2172"><a href="https://eldesvandejose.com/2016/12/02/desarrollo-de-aplicaciones-web/"><span>Desarrollo de Aplicaciones Web</span></a></li>
+		<li id="menu-item-2174" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2174"><a href="https://eldesvandejose.com/2016/12/02/diseno-de-interfaces-multimedia/"><span>Diseño de Interfaces Multimedia</span></a></li>
+		<li id="menu-item-2175" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2175"><a href="https://eldesvandejose.com/2016/12/02/diseno-web/"><span>Diseño Web</span></a></li>
+		<li id="menu-item-2176" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2176"><a href="https://eldesvandejose.com/2016/12/02/estudio-de-los-sistemas-de-gestion-de-contenidos-web/"><span>Estudio de los sistemas de gestión de contenidos web</span></a></li>
+		<li id="menu-item-2178" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2178"><a href="https://eldesvandejose.com/2016/12/02/guia-de-recomendaciones-de-accesibilidad-y-calidad-web/"><span>Guía de Recomendaciones de Accesibilidad y Calidad Web</span></a></li>
+		<li id="menu-item-2179" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2179"><a href="https://eldesvandejose.com/2016/12/02/guia-para-principiantes-optimizacion-para-motores-de-busqueda/"><span>Guía para principiantes: optimización para motores de búsqueda</span></a></li>
+		<li id="menu-item-2180" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2180"><a href="https://eldesvandejose.com/2016/12/02/html-5/"><span>HTML 5</span></a></li>
+		<li id="menu-item-2181" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2181"><a href="https://eldesvandejose.com/2016/12/02/ingenieria-del-software-en-entornos-de-software-libre/"><span>Ingeniería del software en entornos de Software Libre</span></a></li>
+		<li id="menu-item-2182" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2182"><a href="https://eldesvandejose.com/2016/12/02/integra-una-caja-interactiva-en-tu-blog-o-web-con-box/"><span>Integra una caja interactiva en tu blog o web con Box</span></a></li>
+		<li id="menu-item-2183" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2183"><a href="https://eldesvandejose.com/2016/12/02/interaccion-persona-ordenador/"><span>Interacción persona ordenador</span></a></li>
+		<li id="menu-item-2185" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2185"><a href="https://eldesvandejose.com/2016/12/02/metodos-para-el-desarrollo-de-aplicaciones-moviles/"><span>Métodos para el desarrollo de aplicaciones móviles</span></a></li>
+		<li id="menu-item-2186" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2186"><a href="https://eldesvandejose.com/2016/12/02/programacion-web-con-patrones-de-diseno-j2ee-de-alto-nivel/"><span>Programación Web con patrones de diseño J2EE de alto nivel</span></a></li>
+		<li id="menu-item-2187" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2187"><a href="https://eldesvandejose.com/2016/12/02/proyecto-web/"><span>Proyecto web</span></a></li>
+		<li id="menu-item-2188" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2188"><a href="https://eldesvandejose.com/2016/12/02/servidores-de-aplicaciones-web/"><span>Servidores de Aplicaciones Web</span></a></li>
+		<li id="menu-item-2189" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2189"><a href="https://eldesvandejose.com/2016/12/02/sumerjase-en-la-accesibilidad/"><span>Sumérjase en la Accesibilidad</span></a></li>
+		<li id="menu-item-2190" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2190"><a href="https://eldesvandejose.com/2016/12/02/tecnologia-diversidad-y-accesibilidad/"><span>Tecnología, diversidad y accesibilidad</span></a></li>
+		<li id="menu-item-2193" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2193"><a href="https://eldesvandejose.com/2016/12/03/guia-de-recomendaciones-para-diseno-de-software-centrado-en-el-usuario/"><span>Guía de recomendaciones para diseño de software centrado en el usuario</span></a></li>
+		<li id="menu-item-2194" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2194 last-child"><a href="https://eldesvandejose.com/2016/12/04/el-contrato-de-desarrollo-de-sitio-web/"><span>El Contrato de Desarrollo de Sitio Web</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-2235" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2235 last-child"><a href="https://eldesvandejose.com/category/libros-gratis/diseno-3d/" aria-haspopup="true"><span>Diseño 3D</span></a>
+	<ul class="sub-menu" style="display: none;">
+		<li id="menu-item-2236" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2236 first-child"><a href="https://eldesvandejose.com/2016/12/04/tecnologias-libres-para-sintesis-de-imagen-digital-tridimensional/"><span>Tecnologías Libres para Síntesis de Imagen Digital Tridimensional</span></a></li>
+		<li id="menu-item-2237" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2237"><a href="https://eldesvandejose.com/2016/12/04/informatica-grafica/"><span>Informática Gráfica</span></a></li>
+		<li id="menu-item-2238" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2238"><a href="https://eldesvandejose.com/2016/12/04/la-historia-del-diseno-industrial-reconsiderada/"><span>La historia del diseño industrial reconsiderada</span></a></li>
+		<li id="menu-item-2239" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2239"><a href="https://eldesvandejose.com/2016/12/04/diseno-y-construccion-de-objetos-interactivos-digitales/"><span>Diseño y construcción de objetos interactivos digitales</span></a></li>
+		<li id="menu-item-2240" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2240"><a href="https://eldesvandejose.com/2016/12/04/temas-de-diseno-en-interaccion-humano-computadora/"><span>Temas de diseño en Interacción Humano-Computadora</span></a></li>
+		<li id="menu-item-2241" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2241"><a href="https://eldesvandejose.com/2016/12/04/fundamentos-del-modelado-y-prototipado-virtual-en-el-diseno-de-productos/"><span>Fundamentos del modelado y prototipado virtual en el diseño de productos</span></a></li>
+		<li id="menu-item-2242" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2242"><a href="https://eldesvandejose.com/2016/12/04/perspectiva-fundamentos-y-aplicaciones/"><span>Perspectiva: fundamentos y aplicaciones</span></a></li>
+		<li id="menu-item-2243" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2243"><a href="https://eldesvandejose.com/2016/12/04/guia-de-representacion-practica-y-creativa-de-datos-estadisticos/"><span>Guía de representación práctica y creativa de datos estadísticos</span></a></li>
+		<li id="menu-item-2244" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2244"><a href="https://eldesvandejose.com/2016/12/04/diseno-y-tecnologia-en-comunicacion-para-dispositivos-moviles/"><span>Diseño y Tecnología en Comunicación para dispositivos móviles</span></a></li>
+		<li id="menu-item-2245" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2245"><a href="https://eldesvandejose.com/2016/12/04/cuaderno-de-practicas-de-dibujo-para-la-presentacion-de-disenos-de-producto/"><span>Cuaderno de prácticas de dibujo para la presentación de diseños de producto</span></a></li>
+		<li id="menu-item-2246" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2246"><a href="https://eldesvandejose.com/2016/12/04/pequeno-diccionario-del-disenador/"><span>Pequeño Diccionario del Diseñador</span></a></li>
+		<li id="menu-item-2247" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2247"><a href="https://eldesvandejose.com/2016/12/04/dibujo-artistico-nociones-basicas/"><span>Dibujo artístico – Nociones Básicas</span></a></li>
+		<li id="menu-item-2283" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2283"><a href="https://eldesvandejose.com/2016/12/05/imagen-y-comunicacion-visual/"><span>Imagen y comunicación visual</span></a></li>
+		<li id="menu-item-2284" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2284"><a href="https://eldesvandejose.com/2016/12/05/percepcion-visual/"><span>Percepción visual</span></a></li>
+		<li id="menu-item-2285" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2285"><a href="https://eldesvandejose.com/2016/12/05/diccionario-de-diseno-grafico/"><span>Diccionario de diseño gráfico</span></a></li>
+		<li id="menu-item-2286" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2286"><a href="https://eldesvandejose.com/2016/12/05/animacion-3d-recorridos-virtuales/"><span>Animación 3D: Recorridos Virtuales</span></a></li>
+		<li id="menu-item-2287" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2287"><a href="https://eldesvandejose.com/2016/12/05/diseno-centrado-en-el-usuario/"><span>Diseño centrado en el usuario</span></a></li>
+		<li id="menu-item-2288" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2288"><a href="https://eldesvandejose.com/2016/12/05/animacion-de-personajes-i/"><span>Animación de personajes I</span></a></li>
+		<li id="menu-item-2289" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2289"><a href="https://eldesvandejose.com/2016/12/05/animacion-de-personajes-ii/"><span>Animación de personajes II</span></a></li>
+		<li id="menu-item-2290" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2290"><a href="https://eldesvandejose.com/2016/12/05/matematicas-esenciales-para-diseno-computacional/"><span>Matemáticas Esenciales para diseño computacional</span></a></li>
+		<li id="menu-item-2291" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2291"><a href="https://eldesvandejose.com/2016/12/05/realidad-aumentada/"><span>Realidad Aumentada</span></a></li>
+		<li id="menu-item-2584" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2584"><a href="https://eldesvandejose.com/2017/01/10/arte-creatividad-y-diseno/"><span>Arte, creatividad y diseño</span></a></li>
+		<li id="menu-item-2585" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2585"><a href="https://eldesvandejose.com/2017/01/10/conceptos-basicos-de-diseno-grafico/"><span>Conceptos básicos de diseño grafico</span></a></li>
+		<li id="menu-item-2586" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2586"><a href="https://eldesvandejose.com/2017/01/10/cultura-y-color/"><span>Cultura y color</span></a></li>
+		<li id="menu-item-2587" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2587"><a href="https://eldesvandejose.com/2017/01/10/escritura-y-tipografia/"><span>Escritura y tipografía</span></a></li>
+		<li id="menu-item-2588" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2588"><a href="https://eldesvandejose.com/2017/01/10/graficacion-por-computadora/"><span>Graficación por computadora</span></a></li>
+		<li id="menu-item-2589" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2589"><a href="https://eldesvandejose.com/2017/01/10/graficos-digitales/"><span>Gráficos digitales</span></a></li>
+		<li id="menu-item-2590" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2590"><a href="https://eldesvandejose.com/2017/01/10/guia-de-dibujo-y-presentacion-de-disenos-de-productos/"><span>Guía de dibujo y presentación de diseños de productos</span></a></li>
+		<li id="menu-item-2591" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2591"><a href="https://eldesvandejose.com/2017/01/10/identidad-grafica/"><span>Identidad gráfica</span></a></li>
+		<li id="menu-item-2592" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2592"><a href="https://eldesvandejose.com/2017/01/10/infografia/"><span>Infografía</span></a></li>
+		<li id="menu-item-2593" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2593 last-child"><a href="https://eldesvandejose.com/2017/01/10/tecnicas-y-recursos-creativos/"><span>Técnicas y recursos creativos</span></a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="menu-main-search last-child"> 
+<form role="search" method="get" class="searchform" action="https://eldesvandejose.com/">
+	<label>
+		<span class="screen-reader-text">Búsqueda para:</span>
+		<input type="search" class="s" placeholder="Buscar" value="" name="s">
+	</label>
+	<button type="submit" class="searchsubmit"><span class="screen-reader-text">Buscar</span><i class="icon-search"></i></button>
+</form>
+ </li></ul></div>			</nav><!-- #access -->		
+		</div><!-- #masthead -->
+	</header><!-- #header -->
+</div><!-- #header-full -->
+
+<div style="clear:both;height:0;"> </div>
+
+<div id="main">
+		<div id="toTop" style="margin-left: 1150px; opacity: 1; margin-right: 1150px;"><i class="icon-back2top"></i> </div>	<div id="forbottom">
+		
+		<div style="clear:both;"> </div>
+
+		
+		<section id="container" class="two-columns-right">
+			<div id="content" role="main">
+			<div class="breadcrumbs"><a href="https://eldesvandejose.com/"><i class="icon-homebread"></i><span class="screen-reader-text">Inicio</span></a><i class="icon-angle-right"></i> <a href="https://eldesvandejose.com/category/articulos-generalistas/">Artículos generalistas</a> <i class="icon-angle-right"></i> <a href="https://eldesvandejose.com/category/articulos-generalistas/expresiones-regulares/">Expresiones regulares</a> <i class="icon-angle-right"></i> <span class="current">Expresiones regulares</span></div>			
+
+				<div id="post-3072" class="post-3072 post type-post status-publish format-standard has-post-thumbnail hentry category-expresiones-regulares tag-comparacion-de-cadenas tag-comparar-expresiones-regulares tag-expresion-regular-de-correo-electronico tag-expresion-regular-de-url tag-expresiones-regulares tag-patrones-de-texto">
+					<h1 class="entry-title">Expresiones regulares</h1>
+										<div class="entry-meta">
+						<span class="author vcard"><i class="icon-author icon-metas" title="Autor"></i>
+					<a class="url fn n" rel="author" href="https://eldesvandejose.com/author/jlquijado/" title="Ver todas las entradas de jlquijado">jlquijado</a></span><span>
+						<i class="icon-time icon-metas" title="Fecha"></i>
+						<time class="onDate date published" datetime="2017-08-18T15:11:56+00:00">
+							<a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/" rel="bookmark">18-08-2017</a>
+						</time>
+					</span><time class="updated" datetime="2019-03-25T19:39:25+00:00">25-03-2019</time><span class="bl_categ"><i class="icon-folder-open icon-metas" title="Categorías"></i><a href="https://eldesvandejose.com/category/articulos-generalistas/expresiones-regulares/" rel="tag">Expresiones regulares</a></span> 					</div><!-- .entry-meta -->
+
+					<div class="entry-content">
+						<style> #upm-buttons img { border-radius: 3px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); } </style><div class="synved-social-container synved-social-container-share" style="text-align: left"><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-normal synved-social-provider-facebook nolightbox" data-provider="facebook" target="_blank" rel="nofollow" title="Compartir" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;t=Expresiones%20regulares&amp;s=100&amp;p[url]=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;p[images][0]=https%3A%2F%2Feldesvandejose.com%2Fwp-content%2Fuploads%2F2017%2F08%2Fregex.jpg&amp;p[title]=Expresiones%20regulares" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="Facebook" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/Facebook(1).png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-normal synved-social-provider-twitter nolightbox" data-provider="twitter" target="_blank" rel="nofollow" title="Compartir" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;text=Compartir" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="twitter" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/Twitter(1).png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-normal synved-social-provider-google_plus nolightbox" data-provider="google_plus" target="_blank" rel="nofollow" title="Compartir" href="https://plus.google.com/share?url=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="google_plus" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/google_plus.png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-normal synved-social-provider-linkedin nolightbox" data-provider="linkedin" target="_blank" rel="nofollow" title="Compartir" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;title=Expresiones%20regulares" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="linkedin" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/LinkedIn(1).png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-normal synved-social-provider-mail nolightbox" data-provider="mail" rel="nofollow" title="Compartir" href="mailto:?subject=Expresiones%20regulares&amp;body=Compartir:%20https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;"><img alt="mail" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/mail.png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-hidef synved-social-provider-facebook nolightbox" data-provider="facebook" target="_blank" rel="nofollow" title="Compartir" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;t=Expresiones%20regulares&amp;s=100&amp;p[url]=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;p[images][0]=https%3A%2F%2Feldesvandejose.com%2Fwp-content%2Fuploads%2F2017%2F08%2Fregex.jpg&amp;p[title]=Expresiones%20regulares" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="Facebook" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/Facebook(2).png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-hidef synved-social-provider-twitter nolightbox" data-provider="twitter" target="_blank" rel="nofollow" title="Compartir" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;text=Compartir" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="twitter" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/Twitter(2).png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-hidef synved-social-provider-google_plus nolightbox" data-provider="google_plus" target="_blank" rel="nofollow" title="Compartir" href="https://plus.google.com/share?url=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="google_plus" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/google_plus(1).png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-hidef synved-social-provider-linkedin nolightbox" data-provider="linkedin" target="_blank" rel="nofollow" title="Compartir" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072&amp;title=Expresiones%20regulares" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="linkedin" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/LinkedIn(2).png"></a><a class="synved-social-button synved-social-button-share synved-social-size-16 synved-social-resolution-hidef synved-social-provider-mail nolightbox" data-provider="mail" rel="nofollow" title="Compartir" href="mailto:?subject=Expresiones%20regulares&amp;body=Compartir:%20https%3A%2F%2Feldesvandejose.com%2F%3Fp%3D3072" style="font-size: 0px; width:16px;height:16px;margin:0;margin-bottom:5px;"><img alt="mail" title="Compartir" class="synved-share-image synved-social-image synved-social-image-share" width="16" height="16" style="display: inline; width:16px;height:16px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./expresionesregulareshabituales1_files/mail(1).png"></a></div><p style="text-align: justify;"><img class="alignleft size-full wp-image-3074" src="./expresionesregulareshabituales1_files/regex.jpg" alt="" width="210" height="210" srcset="https://eldesvandejose.com/wp-content/uploads/2017/08/regex.jpg 210w, https://eldesvandejose.com/wp-content/uploads/2017/08/regex-150x150.jpg 150w" sizes="(max-width: 210px) 100vw, 210px">Todos sabemos lo que son las expresiones regulares. Se trata de patrones de secuencias de caracteres que empleamos para comprobar si una cadena de texto se ajusta a un formato específico. Por ejemplo, puede que una cadena deba contener dígitos numéricos, pero no espacios en blanco, o letras o signos de puntuación. O podemos querer comprobar que una cadena contiene una dirección de correo electrónico correctamente escrita.</p>
+<p style="text-align: justify;">En estos casos creamos un patrón que define el formato al que debe ajustarse una cadena y luego lo comparamos con la misma. La forma de hacer estas comparaciones depende de cada lenguaje específico. En esta serie de artículos conoceremos el modo de emplear las expresiones regulares en los dos lenguajes de script más extendidos en el desarrollo web: JavaScript y PHP. Sin embargo, los patrones que se emplean en las expresiones regulares para comprobar la coincidencia con tal o cual formato es siempre el mismo, con independencia de que se usen luego estas expresiones en Python, Java, PHP, C++, o cualquier otro lenguaje.</p>
+<p><span id="more-3072"></span></p>
+<h2 style="text-align: justify;"><span id="LAS_EXPRESIONES_REGULARES"><strong>LAS EXPRESIONES REGULARES</strong></span></h2>
+<p style="text-align: justify;">Ya hemos comentado que las expresiones regulares (conocidas cómo <em>regex</em> o <em>regexp</em>) son patrones para validación de datos. Eso lo sabemos todos. Y todos hemos aprendido, seguramente, cómo se construyen esos patrones. Sin embargo, al no ser algo de uso cotidiano (al menos en la mayoría de los casos), no siempre recordamos lo necesario cuando nos hace falta crear una expresión regular. En este artículo vamos a recopilar, a modo de “chuleta”, la estructura de las expresiones regulares, de modo que podamos tenerlo a mano siempre que nos haga falta.</p>
+<p style="text-align: justify;">En una expresión regular podemos incluir caracteres que deberán aparecer en el dato a validar, como letras, dígitos o signos de puntuación. Podemos indicar que dichos caracteres estén en un rango determinado (por ejemplo, dígitos del 6 al 9, o letras de la C a la R). También podemos indicar que tal o cual carácter aparezca al principio o al final de un dato a validar, o que se encuentre repetido determinado número de veces. Además, podemos agrupar partes de la expresión regular, de tal forma que se evalúe el dato a validar en un orden específico.</p>
+<p>La tabla que parece a continuación es un compendio de los distintos patrones que se pueden incluir en una expresión regular.</p>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 80px;"><span style="color: #ffffff;">PATRÓN</span></th>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 880px;"><span style="color: #ffffff;">USO</span></th>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>.</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 880px; text-align: justify;">El punto se emplea como un comodín para buscar un carácter cualquiera, en una posición determinada o no, en el dato a validar. Si queremos usarlo para buscar, específicamente, un punto, deberemos escaparlo con la barra invertida (<code>\.</code> en lugar de <code>.</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>*</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 880px; text-align: justify;">El asterisco indica que el carácter, o secuencia de caracteres, que le precede puede aparecer cualquier número de veces (incluso ninguna, lo que le hace un operador extremadamente ambiguo). Si lo que queremos es buscar, específicamente, un asterisco, deberemos escaparlo con la barra invertida (<code>\*</code> en lugar de <code>*</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>|</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Alternativa. Es un operado que nos permite buscar un patrón u otro, de forma que se validará un dato cuando incluya cualquiera de los patrones que se buscan. Por ejemplo, dada una expresión regular como <code>azul|rojo</code>, dará por válidas las frases <code>El coche es azul</code> o <code>El camión es rojo</code>, pero no validará <code>El coche es verde</code> o <code>La moto es roja</code>.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>?</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">El signo de interrogación indica que el carácter, o secuencia de caracteres, que le precede puede aparecer una vez, o ninguna, pero no más de una vez en el dato a validar. Por ejemplo, el patrón <code>o?</code> validaría <code>Hla</code> y también <code>Hola</code>, pero no <code>Hoola</code>. Si queremos buscar en el dato a validar específicamente el carácter <code>?</code> deberemos escaparlo con la barra invertida (<code>\?</code> en lugar de <code>?</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>+</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Este operado indica que el carácter, o secuencia de caracteres, que le precede debe aparecer, al menos, una vez. Por ejemplo, el patrón <code>i+</code> validaría <code>Junio</code> o <code>Noviembre</code>, pero no <code>Enero</code>. Si queremos buscar, específicamente, el carácter <code>+</code> deberemos escaparlo con la barra invertida (<code>\+</code> en lugar de <code>+</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>()</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Los paréntesis se usan para agrupar caracteres, o secuencias de caracteres, o para establecer precedencias. Por ejemplo, el patrón <code>(f|g)ruta</code> validaría un dato que contenga <code>fruta</code> o <code>gruta</code>. Si queremos buscar específicamente un carácter <code>(</code> o <code>)</code> deberemos escaparlo con la barra invertida (<code>\(</code> en lugar de <code>(</code>, o <code>\)</code> en lugar de <code>)</code>). Si queremos buscar una secuencia formada por los dos paréntesis (abierto y cerrado), uno a continuación del otro, deberemos escapar cada uno de ellos (<code>\(\)</code> en lugar de <code>()</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">
+<p>La barra invertida es un operador extremadamente útil en la construcción de expresiones regulares. Permite escapar cualquier operador (ya hemos visto algunos casos en esta tabla) de forma que deje de ser un operador como tal, y represente un carácter específico.</p>
+<p>Además, permite crear determinadas secuencias para buscar. Por ejemplo, si creamos un patrón que incluya <code>\t</code> no buscará la letra <code>t</code>, sino una tabulación. Uno de los usos, en este sentido, más útiles, es especificar un carácter mediante su código <a href="https://es.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">Unicode</a>. Por ejemplo, el patrón <code>\u03A9</code> buscará el carácter&nbsp;<code>Ω</code>. Es útil cuando hay que buscar caracteres que no están disponibles en el teclado que empleamos. Se puede encontrar una tabla Unicode en <a href="https://unicode-table.com/es/" target="_blank" rel="noopener">este enlace</a>. Una relación más completa de secuencias formadas con la barra invertida puede encontrarse a continuación de esta tabla.</p>
+<p>Si queremos buscar específicamente una barra invertida, deberemos escapar dicho carácter con otra barra invertida (<code>\\</code>&nbsp;en lugar de <code>\</code>).</p>
+</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>[rango]</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Los corchetes permiten definir un rango de caracteres a buscar. Por ejemplo, el patrón <code>[a-f]</code> buscará cualquier letra <strong>minúscula</strong> que esté entre la <code>a</code> y la <code>f</code>; el patrón <code>[A-F]</code> buscará cualquier letra <strong>mayúscula</strong> que esté entre la <code>A</code> y la <code>F</code>; el patrón <code>([A-F]|[a-f])</code> buscará cualquier letra que esté entre la <code>A</code> y la <code>F</code>, y también entre la <code>a</code> y la <code>f</code>. Esto puede expresarse de forma simplificada cómo <code>[A-Fa-f]</code>. Si queremos buscar específicamente un corchete, deberemos escaparlo (<code>\[</code> en lugar de <code>[</code>, o <code>\]</code> en lugar de <code>]</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>{}</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Este operador contiene un valor numérico, o rango de valores numéricos, que indican el número de veces que el carácter o secuencia precedente debe aparecer en un dato, para que sea validado. Por ejemplo, el patrón <code>a{3}</code> validará un dato cuando, dentro del mismo, aparezca la secuencia <code>aaa</code>. El patrón <code>[1-5]{2,4}</code> validará un dato si encuentra una secuencia de entre dos y cuatro dígitos, siempre que estos estén comprendidos entre el 1 y el 5. Es decir, validará <code>123</code>, pero no <code>567</code>&nbsp;(ya que de los dígitos comprendidos entre el 1 y el 5 solo aparece uno, y buscamos entre dos y cuatro). Si queremos encontrar específicamente los caracteres <code>{</code> o <code>}</code> deberemos escaparlos (<code>\{</code> en lugar de <code>{</code>, o <code>\}</code> en lugar de <code>}</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>$</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Este operador establece que el carácter, o rango de caracteres, que le precede es el último de la línea. Por ejemplo, el patrón <code>A$</code> validará las cadenas que terminen con A mayúscula. Es especialmente útil cuando se están validando datos multilínea, por ejemplo, ya que el patrón <code>((\r|\n)\.)$</code> buscará los finales de cada línea. Si lo que queremos es buscar este carácter específicamente, deberemos escaparlo con una barra invertida (<code>\$</code> en lugar de <code>$</code>).</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>^</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">
+<p>Al contrario que el anterior, este operador busca coincidencia con el principio de la línea. En este caso, de modo excepcional, el carácter o secuencia que se busca se establece a la derecha del operador, en lugar de precediéndole, cómo ocurre con otros operadores. Por ejemplo, el patrón <code>^[a-z]</code> validará un dato que empiece por una letra minúscula.</p>
+<p>En combinación con los cochetes, su uso cambia. En este caso se buscan NO coincidencias con el carácter o rango indicado. Por ejemplo, el patrón <code>[^\d]</code> buscará coincidencias con caracteres que no sean dígitos, pero no necesariamente al principio del dato a validar. Si debiéramos buscar esta coincidencia en la posición inicial, el patrón sería <code>^[^\d]</code>.</p>
+<p>Si lo que queremos es buscar este carácter específicamente, deberemos escaparlo con una barra invertida (<code>\^</code> en lugar de <code>^</code>).</p>
+</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>!</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Este operador actúa como negación del carácter, secuencia o rango que le sucede. Por ejemplo, el patrón <code>!\d</code> buscará caracteres que no sean dígitos. Si lo que queremos es buscar este carácter específicamente, deberemos escaparlo con una barra invertida (<code>\!</code> en lugar de <code>!</code>).</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: justify;">Como hemos comentado anteriormente, a continuación incluimos una relación de aquellas secuencias de barra invertida (<code>\</code>) que tienen un significado especial a la hora de construir expresiones regulares.</p>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 80px;"><span style="color: #ffffff;">SECUENCIA</span></th>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 880px;"><span style="color: #ffffff;">USO</span></th>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\t</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Representa un tabulador.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\r</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Representa el “retorno de carro” o “regreso al inicio”, es decir, el punto antes del primer carácter de la línea.&nbsp;<span style="color: #ff0000;"><strong><span style="line-height: 1; height: 0px; vertical-align: baseline; position: relative; font-size: 10px; bottom: 1ex;">(1)</span></strong></span></td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\n</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;"><span style="color: #000000;">Representa la “nueva línea” el carácter por medio del cual una línea da inicio.<span style="color: #ff0000;"><sup>&nbsp;<strong>(1)</strong></sup></span></span></td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\f</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Representa un salto de página.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\x</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Especigfica un carácter mediante su código&nbsp;<code>ASCII</code> o <code>ANSI</code>. Por ejemplo, si se busca el símbolo de derechos de autor (<code>©</code>) y el dato a validar utiliza el conjunto de caracteres <code>Latin-1</code>, el patrón será&nbsp;<code>\xA9</code>. La cuestión es que, por ejemplo, la mayoría de los datos en Internet se usan hoy día en formato <code>UTF-8</code>, pero no podemos dar esto por sentado, por lo que este tipo de patrones podría dar lugar a una inexactitud.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\u</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Especifica un carácter mediante su código <a href="https://es.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">Unicode</a>. Por ejemplo, el patrón <code>\u03A9</code> buscará el carácter&nbsp;<code>Ω</code>.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\d</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Representa un dígito del <code>0</code> al <code>9</code>.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\w</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Representa cualquier carácter alfanumérico, es decir, que no sea un espacio en blanco ni signo de puntuación.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\s</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Representa un espacio en blanco.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\D</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Representa cualquier carácter que no sea un dígito del 0 al 9.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\W</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Representa cualquier carácter no alfanumérico.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\S</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Representa cualquier carácter que no sea un espacio en blanco.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\A</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Representa el inicio de la cadena. No un carácter sino una posición. Sin embargo, a este efecto, en las expresiones regulares es más normalizado emplear&nbsp;<code>^</code>.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\Z</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Representa el final de la cadena. No un carácter sino una posición. Sin embargo, a este efecto, en las expresiones regulares es más normalizado emplear&nbsp;<code>$</code>.&nbsp;</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>\b</code></td>
+<td style="background-color: #c5fcf1; text-align: justify; vertical-align: top; width: 880px;">Marca la posición de una palabra limitada por espacios en blanco, puntuación o el inicio/final de una cadena.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>\B</code></td>
+<td style="background-color: #9dff9c; text-align: justify; vertical-align: top; width: 880px;">Marca la posición entre dos caracteres alfanuméricos o dos no-alfanuméricos.</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="FLAGS"><strong>FLAGS</strong></span></h2>
+<p style="text-align: justify;">Existen un par de flags, o modificadores, que pueden alterar el comportamiento normal de una expresión regular. Se pueden colocar al principio o al final de la expresión, dependiendo del lenguaje empleado.</p>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 80px;"><span style="color: #ffffff;">FLAG</span></th>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 880px;"><span style="color: #ffffff;">USO</span></th>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 80px;"><code>i</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 880px; text-align: justify;">Hace que la comparación sea insensible a mayúsculas y minúsculas. Así, con este flag, los patrones <code>[a-z]</code> y <code>[A-Z]</code> resultan equivalentes.&nbsp;</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 80px;"><code>g</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 880px; text-align: justify;">Se emplea para detectar múltiples ocurrencias de un patrón en un dato a validar. Por defecto, sólo se busca la primera coincidencia.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 37.5369%;"><code>m</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 52.4631%; text-align: justify;">Trata los delimitadores de inicio y fin (<code>^</code> y <code>$</code>) como múltiples líneas de texto (es decir, busca el inicio o fin de cada línea delimitada por <code>\n</code> o <code>\r</code>, no sólo al inicio o fin de todo el dato a validar).</td>
+</tr>
+</tbody>
+</table>
+<h2 style="text-align: justify;"><span id="EXPRESIONES_REGULARES_HABITUALES"><strong>EXPRESIONES REGULARES HABITUALES</strong></span></h2>
+<p style="text-align: justify;">Construir expresiones regulares, cuando se conocen los distintos patrones descritos en este artículo, es una tarea sencilla. Sin embargo, existen expresiones que son de uso muy habitual (por ejemplo, para validar una URL, o una dirección de correo electrónico), que ya están escritas y funcionan perfectamente, por lo que no es necesario reinventar la rueda. Aquí te ofrezco las más habituales.</p>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 37.5369%;"><span style="color: #ffffff;">EXPRESIÓN</span></th>
+<th style="border-color: #000000; background-color: #056ef7; text-align: left; vertical-align: middle; width: 52.4631%;"><span style="color: #ffffff;">USO</span></th>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 37.5369%;"><code>^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 52.4631%; text-align: justify;">Valida un dato de correo electrónico.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 37.5369%;"><code>^(http|https|ftp)\:\/\/[a-z0-9\.-]+\.(([a-z]{2,4})+)$</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 52.4631%; text-align: justify;">Valida una URL.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 37.5369%;"><code>(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 52.4631%; text-align: justify;">Valida un teléfono (incluso el prefijo entre paréntesis).</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 37.5369%;"><code>^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 52.4631%; text-align: justify;">Valida un nombre propio.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 37.5369%;"><code>^\d{2}\/\d{2}\/\d{4}$</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 52.4631%; text-align: justify;">Valida una fecha con formato <code>dd/mm/aaaa</code>. Sin embargo esta es una validación muy “traida por los pelos”, ya que una fecha a todas luces incorrecta, como 65/34/2017 será dada por buena. Las expresiones regulares no son la mejor manera de validar fechas, debiendo recurrirse a otras técnicas.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 37.5369%;"><code>^[0-9]+$</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 52.4631%; text-align: justify;">Valida datos formados exclusivamente por dígitos numéricos, como suele ser el caso de los identificadores únicos de registros.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 37.5369%;"><code>^http:\/\/(localhost|127\.0\.0\.1)</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 52.4631%; text-align: justify;">Valida una URL local (localhost).</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 37.5369%;"><code>^\d{8}[a-zA-Z]{1}$</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 52.4631%; text-align: justify;">Valida un NIF.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 37.5369%;"><code>^[a-zA-Z]{1}\d{7}[a-zA-Z0-9]{1}$</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 52.4631%; text-align: justify;">Valida un CIF.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 37.5369%;"><code>^[XxTtYyZz]{1}[0-9]{7}[a-zA-Z]{1}$</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 52.4631%; text-align: justify;">Valida un NIE.</td>
+</tr>
+<tr>
+<td style="background-color: #c5fcf1; text-align: left; vertical-align: top; width: 37.5369%;"><code>^4[0-9]{3}-?[0-9]{4}-?[0-9]{4}-?[0-9]{4}$</code></td>
+<td style="background-color: #c5fcf1; vertical-align: top; width: 52.4631%; text-align: justify;">Valida una tarjeta VISA.</td>
+</tr>
+<tr>
+<td style="background-color: #9dff9c; text-align: left; vertical-align: top; width: 37.5369%;"><code>^5[1-5][0-9]{2}-?[0-9]{4}-?[0-9]{4}-?[0-9]{4}$</code></td>
+<td style="background-color: #9dff9c; vertical-align: top; width: 52.4631%; text-align: justify;">Valida una tarjeta MASTERCARD.</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: justify;">En el próximo artículo de esta serie hablaremos de la forma de emplear expresiones regulares en JavaScript, para validación de datos en el lado del cliente (aunque lo que comentemos puede ser empleado también en API’s de NodeJS).</p>
+<div id="upm-buttons" align="right"><a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/?upm_export=pdf"><img src="./expresionesregulareshabituales1_files/upm-save-as-pdf-1.2.0-small.png" style="padding:2px" align="absmiddle" border="0" title="Guardar como PDF"></a> &nbsp;<a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/?upm_export=doc"><img src="./expresionesregulareshabituales1_files/upm-save-as-doc-1.2.0-small.png" style="padding:2px" align="absmiddle" border="0" title="Guardar en formato RTF"></a> &nbsp;<a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/?upm_export=html"><img src="./expresionesregulareshabituales1_files/upm-save-as-html-1.2.0-small.png" style="padding:2px" align="absmiddle" border="0" title="Guardar como HTML"></a> &nbsp;<a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/?upm_export=print" target="_blank"><img src="./expresionesregulareshabituales1_files/upm-print-1.2.0-small.png" style="padding:2px" align="absmiddle" border="0" title="Imprimir este contenido"></a></div>
+<p></p>
+											</div><!-- .entry-content -->
+
+
+					<footer class="entry-meta">
+						<span class="footer-tags"><i class="icon-tag icon-metas" title="Etiquetado"></i>&nbsp; <a href="https://eldesvandejose.com/tag/comparacion-de-cadenas/" rel="tag">comparación de cadenas</a>, <a href="https://eldesvandejose.com/tag/comparar-expresiones-regulares/" rel="tag">comparar expresiones regulares</a>, <a href="https://eldesvandejose.com/tag/expresion-regular-de-correo-electronico/" rel="tag">expresión regular de correo electrónico</a>, <a href="https://eldesvandejose.com/tag/expresion-regular-de-url/" rel="tag">expresión regular de url</a>, <a href="https://eldesvandejose.com/tag/expresiones-regulares/" rel="tag">expresiones regulares</a>, <a href="https://eldesvandejose.com/tag/patrones-de-texto/" rel="tag">patrones de texto</a>.</span><span class="bl_bookmark"><i class="icon-bookmark icon-metas" title="Marcar enlace permanente"></i> <a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/" title="Enlace permanente a Expresiones regulares" rel="bookmark"> Marcar</a>.</span>											</footer><!-- .entry-meta -->
+				</div><!-- #post-## -->
+
+				<div id="nav-below" class="navigation">
+					<div class="nav-previous"><a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-en-javascript/" rel="prev"><i class="meta-nav-prev"></i> Expresiones regulares en JavaScript</a></div>
+					<div class="nav-next"><a href="https://eldesvandejose.com/2017/08/22/esclavizar-un-disco-duro/" rel="next">Esclavizar un disco duro <i class="meta-nav-next"></i></a></div>
+				</div><!-- #nav-below -->
+
+				 <div id="comments" class="">  <p class="nocomments">No se admiten más comentarios</p> </div><!-- #comments -->
+
+
+						</div><!-- #content -->
+			<div id="secondary" class="widget-area sidey" role="complementary">
+		
+			<ul class="xoxo">
+								<li id="text-5" class="widget-container widget_text first-child"><h3 class="widget-title">Visítanos en GitHub</h3>			<div class="textwidget"><p><a href="https://github.com/eldesvandejose" target="_blank" title="Visítanos en GitHub" rel="noopener noreferrer"><img src="./expresionesregulareshabituales1_files/github-70.png" border="0" align="left"></a>Visítanos en <a href="https://github.com/eldesvandejose" target="_blank" title="Visítanos en GitHub" rel="noopener noreferrer">GitHub</a>. Allí encontrarás los códigos propios que publicamos aquí (clases, plugins y otras utilidades), así cómo enlaces de interés.</p></div>
+		</li><li id="text-2" class="widget-container widget_text"><h3 class="widget-title">¿Te gustaría aprender sobre CSS?</h3>			<div class="textwidget">No dejes de visitar el blog "hoy he aprendido" en <a href="http://hoyheaprendido.es/" target="_blank" rel="noopener noreferrer">http://hoyheaprendido.es/</a>. Si te gusta el desarrollo frontend, no encontrarás mejores contenidos.</div>
+		</li><li id="nav_menu-2" class="widget-container widget_nav_menu"><h3 class="widget-title">¿Ya eres usuario registrado?. Regístrate y te avisaremos cada vez que publiquemos un nuevo artículo. TOTALMENTE GRATIS, AHORA Y SIEMPRE.</h3><div class="menu-usuarios-container"><ul id="menu-usuarios-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3257 first-child"><a href="https://eldesvandejose.com/contacta-con-nosotros/">Contacto</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-751 last-child"><a href="https://eldesvandejose.com/terminos-y-condiciones/">Términos y condiciones</a></li>
+</ul></div></li><li id="calendar-2" class="widget-container widget_calendar last-child"><h3 class="widget-title">Un calendario, para estar al día.</h3><div id="calendar_wrap" class="calendar_wrap"><table id="wp-calendar">
+	<caption>agosto 2017</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="lunes">L</th>
+		<th scope="col" title="martes">M</th>
+		<th scope="col" title="miércoles">X</th>
+		<th scope="col" title="jueves">J</th>
+		<th scope="col" title="viernes">V</th>
+		<th scope="col" title="sábado">S</th>
+		<th scope="col" title="domingo">D</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="https://eldesvandejose.com/2017/07/">« Jul</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next"><a href="https://eldesvandejose.com/2017/09/">Sep »</a></td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+	</tr>
+	<tr>
+		<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+	</tr>
+	<tr>
+		<td>14</td><td>15</td><td>16</td><td>17</td><td><a href="https://eldesvandejose.com/2017/08/18/" aria-label="Entradas publicadas el 18 August, 2017">18</a></td><td>19</td><td>20</td>
+	</tr>
+	<tr>
+		<td>21</td><td><a href="https://eldesvandejose.com/2017/08/22/" aria-label="Entradas publicadas el 22 August, 2017">22</a></td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>
+	</tr>
+	<tr>
+		<td>28</td><td>29</td><td>30</td><td><a href="https://eldesvandejose.com/2017/08/31/" aria-label="Entradas publicadas el 31 August, 2017">31</a></td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></li>			</ul>
+
+			
+		</div>
+		</section><!-- #container -->
+
+	<div style="clear:both;"></div>
+	</div> <!-- #forbottom -->
+
+
+	<footer id="footer" role="contentinfo">
+		<div id="colophon">
+		
+			
+			
+		</div><!-- #colophon -->
+
+		<div id="footer2">
+		
+			<div class="socials" id="sfooter">
+			<a target="_blank" href="https://www.facebook.com/groups/recursosparaprogramadores/" class="socialicons social-Facebook" title="Facebook">
+				<img alt="Facebook" src="./expresionesregulareshabituales1_files/Facebook.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="https://plus.google.com/share?url=http%3A%2F%2Feldesvandejose.com" class="socialicons social-GooglePlus" title="GooglePlus">
+				<img alt="GooglePlus" src="./expresionesregulareshabituales1_files/GooglePlus.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="http://eldesvandejose.com/feed/" class="socialicons social-RSS" title="RSS">
+				<img alt="RSS" src="./expresionesregulareshabituales1_files/RSS.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="https://twitter.com/programacion67" class="socialicons social-Twitter" title="Twitter">
+				<img alt="Twitter" src="./expresionesregulareshabituales1_files/Twitter.png">
+			<div class="socials-hover"></div></a>
+			<a target="_blank" href="http://www.linkedin.com/share?url=http%3A%2F%2Feldesvandejose.com" class="socialicons social-LinkedIn" title="LinkedIn">
+				<img alt="LinkedIn" src="./expresionesregulareshabituales1_files/LinkedIn.png">
+			<div class="socials-hover"></div></a></div>	<span style="display:block;float:right;text-align:right;padding:5px 20px 5px;text-transform:uppercase;font-size:11px; visibility:hidden;">
+	Creado con <a target="_blank" href="http://www.cryoutcreations.eu/" title="Tempera Theme by Cryout Creations">Tempera</a> &amp; <a target="_blank" href="http://wordpress.org/" title="Plataforma semántica de publicación personal">  WordPress.		</a>
+	</span><!-- #site-info -->
+				
+		</div><!-- #footer2 -->
+
+	</footer><!-- #footer -->
+
+	</div><!-- #main -->
+</div><!-- #wrapper -->
+
+
+<div id="um_upload_single" style="display:none">
+	
+</div><div id="um_view_photo" style="display:none">
+
+	<a href="https://eldesvandejose.com/2017/08/18/expresiones-regulares-general/#" data-action="um_remove_modal" class="um-modal-close"><i class="um-faicon-times"></i></a>
+	
+	<div class="um-modal-body photo">
+	
+		<div class="um-modal-photo">
+
+		</div>
+
+	</div>
+	
+</div><div id="cookie-law-info-bar" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: inherit; top: 0px; position: fixed; display: none;"><h5 class="cli_messagebar_head">Esta web usa cookies</h5><span>Este sitio web emplea cookies propias y de terceros, lo que se te notifica en cumplimiento de la legislación vigente.<a data-cli_action="accept" id="cookie_action_close_header" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button" style="display: inline-block; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">Aceptar</a>  <a id="cookie_action_close_header_reject" class="medium cli-plugin-button cli-plugin-main-button cookie_action_close_header_reject cli_action_button" data-cli_action="reject" style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">Reject</a> <a href="http://eldesvandejose.com/politica-de-cookies/" id="CONSTANT_OPEN_URL" target="_blank" class="cli-plugin-main-link" style="display: inline-block; color: rgb(68, 68, 68);">Leer más</a></span></div><div id="cookie-law-info-again" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); position: fixed; font-family: inherit; width: auto; top: 0px; right: 100px;"><span id="cookie_hdr_showagain">Política de cookies</span></div><div class="cli-modal" id="cliSettingsPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+    <div class="cli-modal-content cli-bar-popup">
+      <button type="button" class="cli-modal-close" id="cliModalClose">
+        <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+      </button>
+      <div class="cli-modal-body">
+        <div class="cli-container-fluid cli-tab-container">
+    <div class="cli-row">
+        <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+            <div class="cli-privacy-overview">
+                                <h4></h4>                                         
+                <div class="cli-privacy-content">
+                    <p class="cli-privacy-content-text"></p>
+                </div>
+                <a class="cli-privacy-readmore" data-readmore-text="Mostrar más" data-readless-text="Mostrar menos"></a>            </div>
+        </div>  
+        <div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+            <div class="cli-tab-section cli-privacy-tab">
+                <div class="cli-tab-header">
+                    <a class="cli-nav-link cli-settings-mobile">
+                                            </a>
+                </div>
+                <div class="cli-tab-content">
+                    <div class="cli-tab-pane cli-fade">
+                        <p></p>
+                    </div>
+                </div>
+
+            </div>
+                            <div class="cli-tab-section">
+                <div class="cli-tab-header">
+                    <a class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+                        Necesarias 
+                    </a>
+                
+                    <span class="cli-necessary-caption">Siempre activado</span>                 </div>
+                <div class="cli-tab-content">
+                    <div class="cli-tab-pane cli-fade" data-id="necessary">
+                        <p></p>
+                    </div>
+                </div>
+                </div>
+                            <div class="cli-tab-section">
+                <div class="cli-tab-header">
+                    <a class="cli-nav-link cli-settings-mobile" data-target="non-necessary" data-toggle="cli-toggle-tab">
+                        No necesarias 
+                    </a>
+                <div class="cli-switch">
+                        <input type="checkbox" id="checkbox-non-necessary" class="cli-user-preference-checkbox" data-id="checkbox-non-necessary" checked="">
+                        <label for="checkbox-non-necessary" class="cli-slider" data-cli-enable="Activado" data-cli-disable="Desactivado">No necesarias</label>
+                    </div>                </div>
+                <div class="cli-tab-content">
+                    <div class="cli-tab-pane cli-fade" data-id="non-necessary">
+                        <p></p>
+                    </div>
+                </div>
+                </div>
+                       
+        </div>
+    </div> 
+</div> 
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<script type="text/javascript">
+  /* <![CDATA[ */
+  cli_cookiebar_settings='{"animate_speed_hide":"500","animate_speed_show":"500","background":"#fff","border":"#444","border_on":false,"button_1_button_colour":"#000","button_1_button_hover":"#000000","button_1_link_colour":"#fff","button_1_as_button":true,"button_1_new_win":false,"button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#444","button_2_as_button":false,"button_2_hidebar":false,"button_3_button_colour":"#000","button_3_button_hover":"#000000","button_3_link_colour":"#fff","button_3_as_button":true,"button_3_new_win":false,"button_4_button_colour":"#000","button_4_button_hover":"#000000","button_4_link_colour":"#fff","button_4_as_button":true,"font_family":"inherit","header_fix":true,"notify_animate_hide":true,"notify_animate_show":false,"notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"top","scroll_close":false,"scroll_close_reload":true,"accept_close_reload":false,"reject_close_reload":false,"showagain_tab":true,"showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#000","show_once_yn":false,"show_once":"10000","logging_on":false,"as_popup":false,"popup_overlay":true,"bar_heading_text":"Esta web usa cookies","cookie_bar_as":"banner","popup_showagain_position":"bottom-right","widget_position":"left"}';
+  /* ]]> */
+</script><script type="text/javascript" src="./expresionesregulareshabituales1_files/hoverIntent.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/zebra_tooltips.js.descarga"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1","visibility_show":"mostrar","visibility_hide":"ocultar","width":"25%"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/front.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/frontend.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/imagesloaded.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/masonry.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/jquery.masonry.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/select2.full.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/underscore.min.js.descarga"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/wp-util.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-crop.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-modal.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-jquery-form.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-fileupload.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/picker.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/picker.date.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/picker.time.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/legacy.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/es_ES.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-raty.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-tipsy.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/simplebar.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-functions.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-responsive.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-conditional.min.js.descarga"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var um_scripts = {"nonce":"027fe532c7"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-scripts.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-members.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-profile.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/um-account.min.js.descarga"></script>
+<script type="text/javascript" src="./expresionesregulareshabituales1_files/wp-embed.min.js.descarga"></script>
+<script type="text/javascript">var cryout_global_content_width = 900;var cryout_toTop_offset = 1150;</script>                			            
+                <script type="text/javascript">
+                    jQuery(function() {
+                                                
+                        jQuery(".tooltips img").closest(".tooltips").css("display", "inline-block");
+                    
+                        new jQuery.Zebra_Tooltips(jQuery('.tooltips').not('.custom_m_bubble'), {
+                            'background_color':     '#7a9cbf',
+                            'color':				'#ffffff',
+                            'max_width':  250,
+                            'opacity':    .95, 
+                            'position':    'center'
+                        });
+                        
+                                            
+                    });
+                </script>        
+				<script type="text/javascript">
+			jQuery( '#request' ).val( '' );
+		</script>
+	
+
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div></body></html>

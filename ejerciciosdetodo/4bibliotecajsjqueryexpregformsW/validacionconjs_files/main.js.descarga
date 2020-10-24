@@ -1,0 +1,39 @@
+// GreenSock Timeline Tween
+function initBanner() {
+
+    var tl = new TimelineMax({
+        repeat: 1,
+        repeatDelay: 2.5
+    });
+
+    var text1 = document.querySelector("#text1"),
+        text2 = document.querySelector("#text2"),
+        text3 = document.querySelector("#text3"),
+        text4 = document.querySelector("#text4"),
+        image1 = document.querySelector("#image1"),
+        image2 = document.querySelector("#image2"),
+        image3 = document.querySelector("#image3"),
+        image4 = document.querySelector("#image4"),
+        mask = document.querySelector("#mask"),
+        cta = document.querySelector("#cta"),
+        ctaText = document.querySelector("#cta span"),
+        logo = document.querySelector("#logo"),
+        fromFB = document.querySelector("#from-FB");
+
+    tl
+        .fromTo(logo, 0.5, { scale: 0.9 }, { scale: 1, autoAlpha: 1, ease:Back.easeOut.config(2) }, '+=0.2')
+        .staggerTo([text1, cta], 0.5, { autoAlpha: 1 }, 0.1, '-=0.35')
+        .fromTo(mask, 0.75, { y: 250 }, { y: 0 },'-=0.75')
+        .fromTo(image1, 0.3, { y: 30 }, {  autoAlpha: 1, y: 0, ease:Linear.easeIn }, '-=0.2')
+        .to(fromFB, 0.4, { autoAlpha: 1 }, '-=0.02')
+        .to(text1, 0.3, { autoAlpha: 0 }, '+=2.85')
+        .to(text2, 0.2, { autoAlpha: 1 }, '-=0.15')
+        .to(text2, 0.3, { autoAlpha: 0 }, '+=2.85')     
+        .to(text3, 0.2, { autoAlpha: 1 }, '-=0.15')
+        .to(text3, 0.3, { autoAlpha: 0 }, '+=2.85')     
+        .to(text4, 0.2, { autoAlpha: 1 }, '-=0.15')
+}
+
+
+
+

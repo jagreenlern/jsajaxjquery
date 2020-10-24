@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Puzzle</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <h1>PUZZLE</h1>
+   <h5>Práctica Final 1ª Evaluación - Ioritz Bilbao Andrés</h5>
+	<center><div id="table" style="display: table;" onclick="sumar()">
+   <div id="fila1" style="display: table-fila;">
+      <div id="celda11" class="pos1" onClick="clickposicion(1,1);"></div>
+      <div id="celda12" class="pos2" onClick="clickposicion(1,2);"></div>
+      <div id="celda13" class="pos3" onClick="clickposicion(1,3);"></div>
+      <div id="celda14" class="pos4" onClick="clickposicion(1,4);"></div>
+   </div>
+   <div id="fila2" style="display: table-fila;">
+      <div id="celda21" class="pos5" onClick="clickposicion(2,1);"></div>
+      <div id="celda22" class="pos6" onClick="clickposicion(2,2);"></div>
+      <div id="celda23" class="pos7" onClick="clickposicion(2,3);"></div>
+      <div id="celda24" class="pos8" onClick="clickposicion(2,4);"></div>
+   </div>
+   <div id="fila3" style="display: table-fila;">
+      <div id="celda31" class="pos9" onClick="clickposicion(3,1);"></div>
+      <div id="celda32" class="pos10" onClick="clickposicion(3,2);"></div>
+      <div id="celda33" class="pos11" onClick="clickposicion(3,3);"></div>
+      <div id="celda34" class="pos12" onClick="clickposicion(3,4);"></div>
+   </div>
+	   <div id="fila4" style="display: table-fila;">
+      <div id="celda41" class="pos13" onClick="clickposicion(4,1);"></div>
+      <div id="celda42" class="pos14" onClick="clickposicion(4,2);"></div>
+      <div id="celda43" class="pos15" onClick="clickposicion(4,3);"></div>
+      <div id="celda44" class="pos16" onClick="clickposicion(4,4);"></div>
+   </div>
+</div>
+
+  
+      
+   </div>
+</center>
+
+<div id="menuctrl">
+<button onClick="stop(), restar(), start(), boton()" id="boton">Juego nuevo</button>
+   
+   <div id="estadisticas">
+
+      <div id="clicks">Movimientos: 0</div>
+
+      <div id="cronometro">
+      <div id="screen">00 : 00 : 00</div>
+      <div id="buttons">
+         <button onclick="stop()">¡Detener tiempo!</button>
+      </div>
+   </div>
+</div>
+	<script src="puzzle.js"></script>
+</body>
+</html>

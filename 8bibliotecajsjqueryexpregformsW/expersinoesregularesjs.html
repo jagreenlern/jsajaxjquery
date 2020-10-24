@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+ 
+<head>
+    <meta charset="utf-8"/>
+    <title>Validación de Formularios</title>
+    <!--<script type="text/javascript" src="JS/jquery-3.4.1.min.js"></script>-->
+    <script type="text/javascript" src="JS/buscarjs.js"></script>
+    <style type="text/css">
+        body{
+            background: #333;
+            padding-top: 40px;
+        }
+        #contenedor{
+            -webkit-border-radius: 10px;
+            -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            -moz-border-radius: 10px;
+            -moz-border-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            -o-border-radius: 10px;
+            -o-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            font-family: sans-serif;
+            font-size: 18px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 190px;
+        }
+ 
+        .campo{
+            border: outset 6px #6F7EEB;
+            font-size: 12px;
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 150px;
+        }
+ 
+        .boton{
+            background: #FF0098;
+            border: solid 0;
+            color: #fff;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+ 
+        .errores{
+            -webkit-boxshadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background: red;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            display: none;
+            font-size: 14px;
+            margin-top: -50px;
+            margin-left: 180px;
+            padding: 10px;
+            position: absolute;
+        }
+    </style>
+ 
+    
+ 
+</head>
+ 
+<body>
+    <div id="contenedor">
+        <form id="miFormulario" method="GET" action="agregarsocio.php" onsubmit="return validar()">
+
+            <label>Nombre y apellidos:</label><br />
+        <input type="text" name="nombre" id="nombre" class="campo" value=""/><br/>
+            <div id="mensaje1" class="errores"> Dame tu nombre y apellidos</div>
+
+            <label>DNI:</label><br />
+            <input type="text" name="dni" id="dni" class="campo" value=""/> <br/>
+            <div id="mensaje2" class="errores"> Dame un dni correcto la letra debe ser valida</div>
+
+            <label>Ciudad:</label><br />
+            <input type="text" name="ciudad" id="ciudad" class="campo" value=""/> <br/>
+            <div id="mensaje3" class="errores"> Dame una ciudad que debe comenzar con mayuscula</div>
+
+            
+            <center>
+            <input type="submit" id="enviar" name="enviar" value="crear" class="boton" />
+            </center>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

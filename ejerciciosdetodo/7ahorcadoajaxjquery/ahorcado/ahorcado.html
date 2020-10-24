@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Sentido Web - AJAX</title>
+<style type="text/css">
+a {
+	text-decoration: none;
+	padding: 0px 3px 0px 3px;
+	}
+	
+a.normal {
+	border: 1px solid blue;
+	}
+
+a.bien {
+	border: 1px solid green;
+	}
+
+a.mal {
+	border: 1px solid red;
+	}
+
+</style>
+<script type="text/javascript">
+var cont = 0;
+function ajaxobj() {
+	try {
+		_ajaxobj = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		try {
+			_ajaxobj = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch (E) {
+			_ajaxobj = false;
+		}
+	}
+   
+	if (!_ajaxobj && typeof XMLHttpRequest!='undefined') {
+		_ajaxobj = new XMLHttpRequest();
+	}
+	
+	return _ajaxobj;
+}
+
+function compruebaLetra(letra) {
+	ajax = ajaxobj();
+	ajax.open("GET", "ahorcado.php?letra="+letra, true);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+			if (letra == "0") {
+				var datos = ajax.responseXML;
+				document.getElementById(letra).innerHTML = datos.getElementsByTagName('palabra').item(0).firstChild.data;
+			} else {
+				var datos = ajax.responseXML;
+				var obj = document.getElementById(letra);
+				if (datos.getElementsByTagName('ok').item(0).firstChild.data == "1") {
+					obj.className = "bien";
+				} else {
+					obj.className = "mal";
+				}
+				document.getElementById("0").innerHTML = datos.getElementsByTagName('palabra').item(0).firstChild.data;
+			}
+		}
+	}
+	ajax.send(null);
+	
+	document.getElementById("intentos").innerHTML = (cont++)+" intentos";
+}
+</script>
+</head>
+<body onload="compruebaLetra('0')">
+<p id="0"></p>
+<p id="intentos">0 intentos</p>
+<p>
+<a id="A" class="normal" href="javascript:compruebaLetra('A')">A</a>
+<a id="B" class="normal" href="javascript:compruebaLetra('B')">B</a>
+<a id="C" class="normal" href="javascript:compruebaLetra('C')">C</a>
+<a id="D" class="normal" href="javascript:compruebaLetra('D')">D</a>
+<a id="E" class="normal" href="javascript:compruebaLetra('E')">E</a>
+<a id="F" class="normal" href="javascript:compruebaLetra('F')">F</a>
+<a id="G" class="normal" href="javascript:compruebaLetra('G')">G</a>
+<a id="H" class="normal" href="javascript:compruebaLetra('H')">H</a>
+<a id="I" class="normal" href="javascript:compruebaLetra('I')">I</a>
+<a id="J" class="normal" href="javascript:compruebaLetra('J')">J</a>
+<a id="K" class="normal" href="javascript:compruebaLetra('K')">K</a>
+<a id="L" class="normal" href="javascript:compruebaLetra('L')">L</a>
+<a id="M" class="normal" href="javascript:compruebaLetra('M')">M</a>
+<a id="N" class="normal" href="javascript:compruebaLetra('N')">N</a>
+<a id="Ñ" class="normal" href="javascript:compruebaLetra('Ñ')">Ñ</a>
+<a id="O" class="normal" href="javascript:compruebaLetra('O')">O</a>
+<a id="P" class="normal" href="javascript:compruebaLetra('P')">P</a>
+<a id="Q" class="normal" href="javascript:compruebaLetra('Q')">Q</a>
+<a id="R" class="normal" href="javascript:compruebaLetra('R')">R</a>
+<a id="S" class="normal" href="javascript:compruebaLetra('S')">S</a>
+<a id="T" class="normal" href="javascript:compruebaLetra('T')">T</a>
+<a id="U" class="normal" href="javascript:compruebaLetra('U')">U</a>
+<a id="V" class="normal" href="javascript:compruebaLetra('V')">V</a>
+<a id="W" class="normal" href="javascript:compruebaLetra('W')">W</a>
+<a id="X" class="normal" href="javascript:compruebaLetra('X')">X</a>
+<a id="Y" class="normal" href="javascript:compruebaLetra('Y')">Y</a>
+<a id="Z" class="normal" href="javascript:compruebaLetra('Z')">Z</a>
+</body>
+</html>

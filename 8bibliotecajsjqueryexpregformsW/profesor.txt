@@ -1,0 +1,11 @@
+Tienes esta página para probar las expresines regulares.
+https://www.regextester.com/
+
+Nombre y apellidos
+
+^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?
+
+Empieza con mayuscula
+https://www.regextester.com/ç
+
+Funciona todo perfectamente.

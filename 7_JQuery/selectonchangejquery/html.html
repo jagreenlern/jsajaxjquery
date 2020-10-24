@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="EJERCICIOS ">
+  <title>EJERCICIOS </title>
+  <link href="css.css" rel="stylesheet">
+  <script type="text/javascript" src="ext/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+    //Agregamos nuevo elemento
+    $('#agregaContenido').click(function () 
+    {
+        var valorTexto = $(this).text();
+        var rutaEnlace = '#';
+ 
+        $("#ul-grupoLista").append( '<li id="breadcrumbs-li1" class="cambia estructura" onclick="eliminar()" ><a href="'+ rutaEnlace +'" > ' +valorTexto);
+    });
+ 
+    //Cambiamos el contenido
+    $( '#cambiaContenido' ).on( "click", function() 
+    {
+        $(".cambia").html("Elemento <b>editado!</b>");
+    });
+ 
+    //Eliminamos todas las opciones
+    $( '#eliminaContenido' ).on( "click", function() 
+    {
+        //eliminamos todos los ementos que contengan la etiqueta <li>
+        $('li').remove();
+    } );
+        //Eliminamos una de las opciones
+    $( '#breadcrumbs-li1' ).on( "click", function() 
+    {
+       var $li = $(".contar").toArray().length;
+ 		
+ 	
+        //eliminamos todos los ementos que contengan la etiqueta <li>
+        $(this).remove();
+        $li = $li -1;
+        alert("Hay " + $li + " elementos");
+	if($li==0)
+   		alert("no se pueden borrar mas elementos");
+   		
+    } );
+
+
+            //Eliminamos una de las opciones
+    $( '#breadcrumbs-li2' ).on( "click", function() 
+    {
+ var $li = $(".contar").toArray().length;
+ 		
+ 	
+        //eliminamos todos los ementos que contengan la etiqueta <li>
+        $(this).remove();
+        $li = $li -1;
+        alert("Hay " + $li + " elementos");
+	if($li==0)
+   		alert("no se pueden borrar mas elementos")
+   	} );
+    
+   
+});
+</script>
+ 
+<STYLE type="text/css">
+.estructura {margin-left:3px; display: inline-block; list-style-position:inside; border: 1px solid black;}
+</STYLE>
+ 
+</head>
+<body>
+<div>
+ 
+</div>
+ 
+<ul id="ul-grupoLista">
+ <li id="breadcrumbs-li1" class="contar" " >opcion1</li>
+  <li id="breadcrumbs-li2" class="contar" " >opcion2</li>
+</ul>
+<br/>
+ 
+<!-- añadimos tres botones, cada uno realizará una función -->
+ 
+<!-- crea un nuevo elemento en la lista -->
+<button id="agregaContenido">Nuevo elemento</button>
+ 
+<!-- cambia el contenido de los elementos de la lista -->
+<button id="cambiaContenido">Cambiar contenido</button>
+ 
+<!-- elimina todos los elementos de la lista -->
+<button id="eliminaContenido">Elimina contenido</button>
+ 
+</body>
+</html>

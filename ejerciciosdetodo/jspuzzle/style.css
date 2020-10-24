@@ -1,0 +1,70 @@
+body { 
+background: white;
+text-align: center;
+}
+
+.pos1, .pos2, .pos3, .pos4, .pos5, .pos6, .pos7, .pos8, .pos9, .pos10, .pos11, .pos12, .pos13, .pos14, .pos15, .pos16 {
+  display: table-cell;
+  width: 67.5px;
+  height: 46.25px;
+  background: url(dinho.png); 
+  cursor: pointer;
+  border: 1px solid red;
+}
+
+.pos1 {background-position: 0px 0px; }
+.pos2 {background-position: -67.5px 0px; }
+.pos3 {background-position: -135px 0px;}
+.pos4 {background-position: -202.5px 0px;}
+.pos5 {background-position: 0px -46.25px;}
+.pos6 {background-position: -67.5px -46.25px;}
+.pos7 {background-position: -135px -46.25px;}
+.pos8 {background-position: -202.5px -46.25px;}
+.pos9 {background-position: 0px -92.5px;}
+.pos10 {background-position: -67.5px -92.5px;}
+.pos11 {background-position: -135px -92.5px;}
+.pos12 {background-position: -202.5px -92.5px;}
+.pos13 {background-position: 0px -138.75px;}
+.pos14 {background-position: -67.5px -138.75px;}
+.pos15 {background-position: -135px -138.75px;}
+.pos16 {background: white; cursor: default;}
+
+#table{
+
+	border: 5px solid black;
+
+}
+
+#boton{
+
+	margin-top: 1em;
+
+}
+
+#estadisticas{
+
+	margin-top: 1em;
+	width: 300px;
+	height: 120px;
+	
+}
+
+#clicks {
+
+	margin: 1em;
+}
+
+#cronometro {
+
+	margin: 1em;
+
+}
+
+#buttons{
+
+	margin: .5em;
+}
+
+#menuctrl{
+margin: -15% 8.1% 10% 70%;
+}

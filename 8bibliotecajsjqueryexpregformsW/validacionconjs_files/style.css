@@ -1,0 +1,155 @@
+/***** Fonts *****/ 
+@font-face {
+    font-family: 'Effra';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Effra'), url('Effra-Light.woff') format('woff'), url('Effra-Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Effra';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Effra'), url('Effra-Medium.woff') format('woff');
+}
+/***** End Fonts *****/
+
+/***** Resets *****/
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    font-family: 'Effra', 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+/***** End Resets *****/
+
+/**** Container ****/
+#container {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid #20252D;
+    background-color: #fff;
+}
+
+#bg-exit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.hide {
+    opacity: 0;
+}
+/**** End Container ****/
+
+/**** Image Styles ****/
+.galleryimage {
+    position: absolute;
+    background-position-y: 590px;
+    background-position-x: -2px;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+}
+/**** End Images ****/
+
+/**** Copy Styles ****/
+#shrink-wrap {
+    position: absolute;
+    width: 120px;
+    height: 84px;
+    top: 70px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.copy-text {
+    position: absolute;
+    width: 100%;
+    flex: 1 0 auto; /* prevent positinal shift of flexbox */
+    font-size: 22px;
+    line-height: 26px;
+    z-index: 4;
+}
+/**** End Copy ****/
+
+/***** Mask Styles *****/
+#mask {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    left: 0;
+    background-image: url("Skyscraper_mask.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 848px;
+    z-index: 3;
+}
+/***** End Mask *****/
+
+/***** CTA Style *****/
+#cta {
+    position: absolute;
+    top: 210px;
+    left: 22.5px;
+    height: 36px;
+    width: 113px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+#cta span {
+    font-size: 16px; 
+    font-weight: 500;
+    text-align: center;
+}
+/***** End CTa *****/
+
+/**** Logo Styles ****/
+#logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-image: url("Logo-Black.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 28.5px;
+    width: 120px;
+    z-index: 5;
+}
+
+#from-FB {
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    width: 80px;
+    height: 23px;
+    background-image: url("attr_wht.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 5;
+}
+/**** End Logo *****/
